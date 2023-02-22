@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/root.gd" type="Script" id=1]
+[ext_resource path="res://src/menu/home/home.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/level/adventure/adventure_level.tscn" type="PackedScene" id=3]
+
+[node name="Viewport" type="ViewportContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+home_scene = ExtResource( 2 )
+level_scene = ExtResource( 3 )
+root_node = NodePath("Control")
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.137255, 0.137255, 0.137255, 1 )
