@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/root.gd" type="Script" id=1]
 [ext_resource path="res://src/menu/home/home.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/level/adventure/adventure_level.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/game_instance.gd" type="Script" id=4]
+[ext_resource path="res://src/entity/actor/player_controller.tscn" type="PackedScene" id=5]
 
 [node name="Viewport" type="ViewportContainer"]
 anchor_right = 1.0
@@ -20,3 +22,7 @@ anchor_bottom = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.137255, 0.137255, 0.137255, 1 )
+
+[node name="GameInstance" type="Node2D" parent="."]
+script = ExtResource( 4 )
+_player_controller_scene = ExtResource( 5 )

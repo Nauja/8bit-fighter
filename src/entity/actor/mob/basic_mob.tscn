@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://src/entity/mob/slime/slime.png" type="Texture" id=1]
-[ext_resource path="res://src/entity/mob/mob.gd" type="Script" id=2]
+[ext_resource path="res://src/entity/actor/action/move_action.gd" type="Script" id=1]
+[ext_resource path="res://src/entity/actor/mob/basic_mob.gd" type="Script" id=2]
+[ext_resource path="res://src/entity/actor/action/idle_action.gd" type="Script" id=3]
+[ext_resource path="res://src/entity/actor/action/hit_action.gd" type="Script" id=4]
+[ext_resource path="res://src/entity/actor/action/attack_action.gd" type="Script" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -22,6 +25,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "attack"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -51,20 +55,39 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="BasicMob" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-hframes = 16
-vframes = 16
+unique_name_in_owner = true
 region_rect = Rect2( 1, 4, 31, 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 playback_speed = 1.5
 anims/RESET = SubResource( 2 )
 anims/attack = SubResource( 4 )
 anims/idle = SubResource( 3 )
+
+[node name="IdleAction" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 3 )
+_entity_path = NodePath("..")
+
+[node name="MoveAction" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 1 )
+_entity_path = NodePath("..")
+
+[node name="HitAction" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 4 )
+_entity_path = NodePath("..")
+
+[node name="AttackAction" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 5 )
+_entity_path = NodePath("..")

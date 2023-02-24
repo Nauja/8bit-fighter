@@ -1,14 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/level/adventure/adventure_level.gd" type="Script" id=1]
-[ext_resource path="res://src/entity/mob/slime/slime_sheet.tres" type="Resource" id=2]
+[ext_resource path="res://src/entity/actor/mob/slime/slime_data.tres" type="Resource" id=2]
 [ext_resource path="res://src/entity/static/spawner/mob_spawner.gd" type="Script" id=3]
+[ext_resource path="res://src/entity/actor/player_controller.gd" type="Script" id=4]
+[ext_resource path="res://src/input/local_input_device.gd" type="Script" id=5]
 
 [node name="AdventureLevel" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="MobSpawner" type="Node2D" parent="."]
 position = Vector2( 146, 88 )
 script = ExtResource( 3 )
 root_node = NodePath("..")
 mob_sheet = ExtResource( 2 )
+
+[node name="PlayerController" type="Node2D" parent="."]
+script = ExtResource( 4 )
+_input_device_path = NodePath("../LocalInputDevice")
+
+[node name="LocalInputDevice" type="Node2D" parent="."]
+script = ExtResource( 5 )
