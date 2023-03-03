@@ -2,7 +2,7 @@ class_name Actor
 extends Entity
 
 # Team the actor is in
-export(int) var team
+@export var team: int
 # Input values assigned from controller
 var input: Vector2
 

@@ -1,4 +1,4 @@
-# The basic mob has only a single Sprite and AnimationPlayer
+# The basic mob has only a single Sprite2D and AnimationPlayer
 class_name BasicMob
 extends Actor
 
@@ -9,39 +9,37 @@ enum EBasicMobState {
 	Attack
 }
 
-var sheet: BasicMobSheet setget set_sheet, get_sheet
+var sheet: BasicMobSheet:
+	get = _get_sheet, set = _set_sheet
 
-var sprite setget , get_sprite
-var animation_player setget , get_animation_player
+@onready var sprite: Sprite2D = %Sprite2D:
+	get:
+		return sprite
 
-onready var _actions = {
-	EBasicMobState.Idle: get_node("%IdleAction"),
-	EBasicMobState.Move: get_node("%MoveAction"),
-	EBasicMobState.Hit: get_node("%HitAction"),
-	EBasicMobState.Attack: get_node("%AttackAction")
+@onready var animation_player: AnimationPlayer = %AnimationPlayer:
+	get:
+		return animation_player
+
+@onready var _actions = {
+	EBasicMobState.Idle: %IdleAction,
+	EBasicMobState.Move: %MoveAction,
+	EBasicMobState.Hit: %HitAction,
+	EBasicMobState.Attack: %AttackAction
 }
 
-func set_sheet(other):
+func _set_sheet(other):
 	sheet = other
 	if sprite != null:
 		sprite.texture = other.sprite_sheet
 		sprite.hframes = other.hframes
 		sprite.vframes = other.vframes
 
-func get_sheet():
+func _get_sheet():
 	return sheet
 	
-func get_sprite():
-	return sprite
-	
-func get_animation_player():
-	return animation_player
-	
 func _ready():
-	._ready()
-	sprite = get_node("%Sprite")
-	animation_player = get_node("%AnimationPlayer")
-	set_sheet(sheet)
+	super()
+	_set_sheet(sheet)
 	push_action(_actions[EBasicMobState.Idle])
 	PlayerControllerSignals.get_player_controller(0).actor = self
 	

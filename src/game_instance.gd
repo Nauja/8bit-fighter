@@ -1,14 +1,14 @@
 class_name GameInstance
 extends Node2D
 
-export(PackedScene) var _player_controller_scene
+@export var _player_controller_scene: PackedScene
 var _controllers: Array = []
 
 func _ready():
-	PlayerControllerSignals._get_player_controller = funcref(self, "_get_player_controller")
+	PlayerControllerSignals._get_player_controller = _get_player_controller
 	
 	for i in range(Constants.MAX_PLAYERS):
-		var controller = _player_controller_scene.instance()
+		var controller = _player_controller_scene.instantiate()
 		controller.id = i
 		_controllers.append(controller)
 		call_deferred("add_child", controller)

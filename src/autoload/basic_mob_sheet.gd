@@ -1,17 +1,17 @@
 extends Resource
 
 # Another ActorSheet used as template
-export(Resource) var template setget , get_template
-# Reference to the scene to be spawned
-export(PackedScene) var scene setget , get_scene
+@export var template: Resource : get = get_template
+# RefCounted to the scene to be spawned
+@export var scene: PackedScene : get = get_scene
 # Name to display
-export(String) var display_name setget , get_display_name
-# Sprite sheet of the mob
-export(Resource) var sprite_sheet setget , get_sprite_sheet
+@export var display_name: String : get = get_display_name
+# Sprite2D sheet of the mob
+@export var sprite_sheet: Texture2D : get = get_sprite_sheet
 # Number of horizontal frames in the spritesheet
-export(int) var hframes setget , get_hframes
+@export var hframes: int : get = get_hframes
 # Number of vertical frames in the spritesheet
-export(int) var vframes setget , get_vframes
+@export var vframes: int : get = get_vframes
 
 func get_template():
 	return template

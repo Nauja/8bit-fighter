@@ -7,7 +7,7 @@ on:
       - "LICENSE"
 
 env:
-  GODOT_VERSION: 3.5.1
+  GODOT_VERSION: 4.0
   EXPORT_NAME: 8bitfighter
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.5.1
+      image: barichello/godot-ci:4.0
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -41,7 +41,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.5.1
+      image: barichello/godot-ci:4.0
     steps:
       - name: Checkout
         uses: actions/checkout@v2

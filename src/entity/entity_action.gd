@@ -11,11 +11,12 @@ enum EEntityActionState {
 }
 
 # Owner entity
-export(NodePath) var _entity_path
-onready var entity = get_node(_entity_path)
+@export var _entity_path: NodePath
+@onready var entity = get_node(_entity_path)
 	
 # Action state
-var state: int setget , get_state
+var state: int:
+	get = _get_state, set = _set_state
 
 # If _ready has been called
 var __is_ready: bool
@@ -23,7 +24,7 @@ var __is_ready: bool
 func _set_state(val: int):
 	state = val
 	
-func get_state() -> int:
+func _get_state() -> int:
 	return state
 	
 func _ready():

@@ -3,17 +3,17 @@ class_name PlayerController
 extends ActorController
 
 # Unique id
-var id: int setget set_id, get_id
+var id: int:
+	get = _get_id, set = _set_id
 
 # Connected input device
-export(NodePath) var _input_device_path
-onready var input_device = get_node(_input_device_path)
+@onready var input_device: InputDevice = %InputDevice
 
-func set_id(val: int) -> void:
+func _set_id(val: int) -> void:
 	id = val
 	name = "PlayerController" + str(val)
 	
-func get_id() -> int:
+func _get_id() -> int:
 	return id
 
 func _process(delta):

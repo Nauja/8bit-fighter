@@ -5,7 +5,7 @@
 
 [node name="PlayerController" type="Node2D"]
 script = ExtResource( 1 )
-_input_device_path = NodePath("LocalInputDevice")
 
-[node name="LocalInputDevice" type="Node2D" parent="."]
+[node name="InputDevice" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource( 2 )

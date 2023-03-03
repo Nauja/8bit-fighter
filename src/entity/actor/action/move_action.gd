@@ -2,7 +2,7 @@ class_name MoveAction
 extends ActorAction
 
 func _do_start():
-	._do_start()
+	super()
 	entity.animation_player.play("idle")
 	
 func _physics_process(delta):
@@ -16,6 +16,9 @@ func _physics_process(delta):
 		entity.push_state(BasicMob.EBasicMobState.Idle)
 		return
 		
-	entity.move_and_slide(entity.input * 20, Vector2.UP)
+	entity.set_velocity(entity.input * 20)
+	entity.set_up_direction(Vector2.UP)
+	entity.move_and_slide()
+	entity.velocity
 	entity.sprite.set_flip_h(entity.input.x < 0)
 			

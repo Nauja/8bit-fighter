@@ -6,136 +6,13 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Entity",
-"class": "Actor",
-"language": "GDScript",
-"path": "res://src/entity/actor/actor.gd"
-}, {
-"base": "EntityAction",
-"class": "ActorAction",
-"language": "GDScript",
-"path": "res://src/entity/actor/actor_action.gd"
-}, {
-"base": "Node2D",
-"class": "ActorController",
-"language": "GDScript",
-"path": "res://src/entity/actor/actor_controller.gd"
-}, {
-"base": "Level",
-"class": "AdventureLevel",
-"language": "GDScript",
-"path": "res://src/level/adventure/adventure_level.gd"
-}, {
-"base": "Level",
-"class": "ArcadeLevel",
-"language": "GDScript",
-"path": "res://src/level/arcade/arcade_level.gd"
-}, {
-"base": "ActorAction",
-"class": "AttackAction",
-"language": "GDScript",
-"path": "res://src/entity/actor/action/attack_action.gd"
-}, {
-"base": "Actor",
-"class": "BasicMob",
-"language": "GDScript",
-"path": "res://src/entity/actor/mob/basic_mob.gd"
-}, {
-"base": "Node2D",
-"class": "Entity",
-"language": "GDScript",
-"path": "res://src/entity/entity.gd"
-}, {
-"base": "Node2D",
-"class": "EntityAction",
-"language": "GDScript",
-"path": "res://src/entity/entity_action.gd"
-}, {
-"base": "Node2D",
-"class": "GameInstance",
-"language": "GDScript",
-"path": "res://src/game_instance.gd"
-}, {
-"base": "ActorAction",
-"class": "HitAction",
-"language": "GDScript",
-"path": "res://src/entity/actor/action/hit_action.gd"
-}, {
-"base": "ActorAction",
-"class": "IdleAction",
-"language": "GDScript",
-"path": "res://src/entity/actor/action/idle_action.gd"
-}, {
-"base": "Node2D",
-"class": "InputDevice",
-"language": "GDScript",
-"path": "res://src/input/input_device.gd"
-}, {
-"base": "Node2D",
-"class": "Level",
-"language": "GDScript",
-"path": "res://src/level/level.gd"
-}, {
-"base": "InputDevice",
-"class": "LocalInputDevice",
-"language": "GDScript",
-"path": "res://src/input/local_input_device.gd"
-}, {
-"base": "CanvasLayer",
-"class": "Menu",
-"language": "GDScript",
-"path": "res://src/menu/menu.gd"
-}, {
-"base": "Node2D",
-"class": "MobSpawner",
-"language": "GDScript",
-"path": "res://src/entity/static/spawner/mob_spawner.gd"
-}, {
-"base": "ActorAction",
-"class": "MoveAction",
-"language": "GDScript",
-"path": "res://src/entity/actor/action/move_action.gd"
-}, {
-"base": "ActorController",
-"class": "PlayerController",
-"language": "GDScript",
-"path": "res://src/entity/actor/player_controller.gd"
-}, {
-"base": "Level",
-"class": "TestLevel",
-"language": "GDScript",
-"path": "res://src/level/test/test_level.gd"
-} ]
-_global_script_class_icons={
-"Actor": "",
-"ActorAction": "",
-"ActorController": "",
-"AdventureLevel": "",
-"ArcadeLevel": "",
-"AttackAction": "",
-"BasicMob": "",
-"Entity": "",
-"EntityAction": "",
-"GameInstance": "",
-"HitAction": "",
-"IdleAction": "",
-"InputDevice": "",
-"Level": "",
-"LocalInputDevice": "",
-"Menu": "",
-"MobSpawner": "",
-"MoveAction": "",
-"PlayerController": "",
-"TestLevel": ""
-}
+config_version=5
 
 [application]
 
 config/name="8bit-fighter"
 run/main_scene="res://src/root.tscn"
+config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
 [autoload]
@@ -149,12 +26,11 @@ PlayerControllerSignals="*res://src/autoload/player_controller_signals.gd"
 
 [display]
 
-window/size/width=320
-window/size/height=180
-window/size/test_width=640
-window/size/test_height=360
-window/stretch/mode="2d"
-window/stretch/aspect="keep"
+window/size/viewport_width=320
+window/size/viewport_height=180
+window/size/window_width_override=640
+window/size/window_height_override=360
+window/stretch/mode="viewport"
 
 [global]
 
@@ -192,28 +68,28 @@ texture={
 
 attack={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"echo":false,"script":null)
+]
 }
 move_left={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194319,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 move_right={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194321,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 move_up={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194320,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 move_down={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 
 [physics]
@@ -222,8 +98,9 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
+environment/defaults/default_environment="res://default_env.tres"
 quality/driver/driver_name="GLES2"
 2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
-vram_compression/import_etc2=false
-environment/default_environment="res://default_env.tres"

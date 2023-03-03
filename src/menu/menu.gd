@@ -3,11 +3,5 @@ class_name Menu
 extends CanvasLayer
 
 # Control node to hide/show
-export(NodePath) var root_node
-onready var _root = get_node(root_node)
-
-func hide():
-	_root.hide()
-	
-func show():
-	_root.show()
+@export var root_node: NodePath
+@onready var _root = get_node(root_node)

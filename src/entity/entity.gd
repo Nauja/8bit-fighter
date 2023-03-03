@@ -7,7 +7,7 @@ extends Node2D
 # var b = "text"
 
 # Queue of actions to execute
-var _action_queue: Array = []
+var _action_queue: Array[EntityAction] = []
 
 # Action currently playing
 var _current_action: EntityAction = null
