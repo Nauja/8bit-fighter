@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dcxy4u6j8enml"]
+
+[ext_resource type="PackedScene" uid="uid://bfpuvk2uhlqhp" path="res://src/entity/actor/hero/template/template_hero.tscn" id="1_c3e58"]
+[ext_resource type="Script" path="res://src/autoload/basic_mob_sheet.gd" id="2_3x6le"]
+[ext_resource type="Texture2D" uid="uid://dvuryjsjkusra" path="res://src/entity/actor/hero/template/template.png" id="3_jaect"]
+[ext_resource type="Resource" uid="uid://bwa014k5y75i3" path="res://src/entity/actor/mob/basic_mob_data.tres" id="4_06f3o"]
+
+[resource]
+script = ExtResource("2_3x6le")
+sprite_sheet = ExtResource("3_jaect")
+hframes = 0
+vframes = 0
+template = ExtResource("4_06f3o")
+scene = ExtResource("1_c3e58")
+display_name = "Template"
+speed = 60
+jump_speed = 0
+lifting_speed = 0
+gravity = 0
+gravity_multiplier_falling = 0.0
+friction = 0.0
+acceleration = 0.0
+attack_input_delay = 0.1
+interact_input_delay = 0.1

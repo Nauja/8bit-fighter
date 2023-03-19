@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://src/root.gd" id="1"]
 [ext_resource type="PackedScene" path="res://src/menu/home/home.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://src/level/adventure/adventure_level.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://b3cjfdtuh32eg" path="res://src/level/adventure/adventure_level.tscn" id="3"]
 [ext_resource type="Script" path="res://src/game_instance.gd" id="4"]
-[ext_resource type="PackedScene" path="res://src/entity/actor/player_controller.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://b2tg6mys22i2e" path="res://src/entity/actor/player_controller.tscn" id="5"]
 
 [node name="SubViewport" type="SubViewportContainer"]
 anchors_preset = 15

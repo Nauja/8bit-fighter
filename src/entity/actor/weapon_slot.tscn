@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://by0ci7xxcfg75"]
+
+[ext_resource type="Script" path="res://src/entity/actor/weapon_slot.gd" id="1_gk0j5"]
+[ext_resource type="Texture2D" uid="uid://bvtioyrr8tq0x" path="res://src/entity/static/weapon/sword/sword_weapon_atlas.tres" id="2_ef0j2"]
+
+[node name="WeaponSlot" type="Node2D"]
+script = ExtResource("1_gk0j5")
+slot = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(6, -6)
+texture = ExtResource("2_ef0j2")

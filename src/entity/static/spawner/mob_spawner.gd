@@ -7,10 +7,10 @@ extends Node2D
 # Sheet of the mob to spawn
 @export var mob_sheet: Resource
 
+
 func _ready():
 	var mob = mob_sheet.scene.instantiate()
-	mob.name = mob_sheet.display_name
-	mob.sheet = mob_sheet
+	mob.mob_sheet = mob_sheet
 	mob.position = position
-	
+
 	_root.call_deferred("add_child", mob)

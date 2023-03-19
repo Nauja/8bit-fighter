@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwmnp4478ldr1"]
+
+[ext_resource type="Script" path="res://src/entity/actor/pickup/pickup.gd" id="1_exmka"]
+[ext_resource type="Texture2D" uid="uid://bvtioyrr8tq0x" path="res://src/entity/static/weapon/sword/sword_weapon_atlas.tres" id="2_h55r4"]
+[ext_resource type="Script" path="res://src/entity/actor/pickup/pickup_interactable.gd" id="3_cmq23"]
+[ext_resource type="Script" path="res://src/entity/actor/action/lifted_action.gd" id="4_6p6en"]
+[ext_resource type="Script" path="res://src/entity/actor/action/thrown_action.gd" id="5_dlvik"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oxrv5"]
+radius = 3.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_31p13"]
+
+[node name="Pickup" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_exmka")
+_equipment_slot_paths = null
+team = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_oxrv5")
+
+[node name="Holder" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Holder"]
+unique_name_in_owner = true
+position = Vector2(0, -8)
+texture = ExtResource("2_h55r4")
+
+[node name="InteractableArea" type="Area2D" parent="Holder" groups=["interactable"]]
+collision_layer = 2
+monitoring = false
+script = ExtResource("3_cmq23")
+_owner_path = NodePath("../..")
+
+[node name="InteractableCollisionShape" type="CollisionShape2D" parent="Holder/InteractableArea"]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_31p13")
+
+[node name="LiftedAction" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_6p6en")
+_entity_path = NodePath("..")
+
+[node name="ThrownAction" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_dlvik")
+_entity_path = NodePath("..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true

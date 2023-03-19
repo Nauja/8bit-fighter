@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://d3d6ewvf4k3kc"]
+
+[ext_resource type="Resource" uid="uid://b7tbh5t7s0p7t" path="res://src/entity/static/weapon/hammer/hammer_weapon_data.tres" id="1_mnm2t"]
+[ext_resource type="PackedScene" uid="uid://bwmnp4478ldr1" path="res://src/entity/actor/pickup/pickup.tscn" id="2_7sad3"]
+[ext_resource type="Script" path="res://src/autoload/equipment_pickup_sheet.gd" id="2_d42oe"]
+[ext_resource type="Texture2D" uid="uid://cuqe7acygbyio" path="res://src/entity/static/weapon/hammer/hammer_pickup_atlas.tres" id="4_emr0h"]
+
+[resource]
+script = ExtResource("2_d42oe")
+_equipment = ExtResource("1_mnm2t")
+texture = ExtResource("4_emr0h")
+scene = ExtResource("2_7sad3")
+display_name = ""
+speed = 120
+jump_speed = -180
+gravity = 400
+gravity_multiplier_falling = 1.5
+friction = 0.1
+acceleration = 0.25
+attack_input_delay = 0.1
+interact_input_delay = 0.1

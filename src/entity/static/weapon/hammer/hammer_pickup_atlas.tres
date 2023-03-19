@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cuqe7acygbyio"]
+
+[ext_resource type="Texture2D" uid="uid://dpiio7jpcone1" path="res://src/entity/static/weapon/hammer/hammer_weapon_atlas.tres" id="1_xi1io"]
+
+[resource]
+atlas = ExtResource("1_xi1io")
+region = Rect2(0, 0, 16, 16)
