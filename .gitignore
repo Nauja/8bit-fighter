@@ -3,6 +3,8 @@
 .godot/
 .import/
 export.cfg
+venv/
+.vscode/
 
 # Mono-specific ignores
 .mono/

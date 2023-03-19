@@ -194,6 +194,9 @@ func _physics_process(delta):
 
 # Try to interact with a nearby object
 func interact() -> bool:
+	if state != Enums.EActorState.Move:
+		return false
+
 	if len(interactables) == 0:
 		return false
 
