@@ -1,6 +1,6 @@
 # Interactable component of a chest
 class_name ChestInteractable
-extends Area2D
+extends Area3D
 
 # Owner
 @export var _chest_path: NodePath

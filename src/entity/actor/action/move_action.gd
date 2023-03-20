@@ -65,9 +65,9 @@ func get_input():
 	else:
 		actor.velocity.x = lerp(actor.velocity.x, float(0.0), actor.friction)
 	if diry != 0:
-		actor.velocity.y = lerp(actor.velocity.y, float(diry * _speed), actor.acceleration)
+		actor.velocity.z = lerp(actor.velocity.z, float(diry * _speed), actor.acceleration)
 	else:
-		actor.velocity.y = lerp(actor.velocity.y, float(0.0), actor.friction)
+		actor.velocity.z = lerp(actor.velocity.z, float(0.0), actor.friction)
 	_is_idle = dirx == 0 and diry == 0
 
 
@@ -76,5 +76,5 @@ func _physics_process(delta):
 		return
 
 	get_input()
-	actor.set_up_direction(Vector2.UP)
+	actor.set_up_direction(Vector3.UP)
 	actor.move_and_slide()

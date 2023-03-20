@@ -91,7 +91,7 @@ func _get_acceleration():
 	return template.acceleration
 
 
-func spawn_at(pos: Vector2) -> Actor:
+func spawn_at(pos: Vector3) -> Actor:
 	if not scene:
 		return null
 

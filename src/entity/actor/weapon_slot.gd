@@ -8,10 +8,10 @@ var weapon: WeaponSheet:
 
 # Area for hit
 @export var _area_path: NodePath
-@onready var _area: Area2D = get_node(_area_path)
+@onready var _area: Area3D = get_node(_area_path)
 
 # Nodes
-@onready var sprite: Sprite2D = %Sprite2D:
+@onready var sprite: Sprite3D = %Sprite:
 	get:
 		return sprite
 
@@ -23,7 +23,7 @@ func _get_weapon() -> WeaponSheet:
 func _set_weapon(val: WeaponSheet) -> void:
 	weapon = val
 	if sprite:
-		sprite.texture = val.texture if val else null
+		sprite.atlas = val.texture if val else null
 
 
 func _ready():
@@ -40,5 +40,5 @@ func equip(other: EquipmentSheet) -> bool:
 	return false
 
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(area: Area3D) -> void:
 	print(name, " entered ", area)

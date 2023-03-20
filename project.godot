@@ -50,25 +50,23 @@ common/drop_mouse_on_gui_input_disabled=true
 [importer_defaults]
 
 texture={
-"compress/bptc_ldr": 0,
-"compress/hdr_mode": 0,
+"compress/channel_pack": 0,
+"compress/hdr_compression": 1,
+"compress/high_quality": false,
 "compress/lossy_quality": 0.7,
 "compress/mode": 0,
 "compress/normal_map": 0,
-"detect_3d": false,
-"flags/anisotropic": false,
-"flags/filter": false,
-"flags/mipmaps": false,
-"flags/repeat": 0,
-"flags/srgb": 2,
-"process/HDR_as_SRGB": false,
+"detect_3d/compress_to": 0,
+"mipmaps/generate": false,
+"mipmaps/limit": -1,
 "process/fix_alpha_border": true,
-"process/invert_color": false,
+"process/hdr_as_srgb": false,
+"process/hdr_clamp_exposure": false,
 "process/normal_map_invert_y": false,
 "process/premult_alpha": false,
-"size_limit": 0,
-"stream": false,
-"svg/scale": 1.0
+"process/size_limit": 0,
+"roughness/mode": 0,
+"roughness/src_normal": ""
 }
 
 [input]
@@ -111,8 +109,12 @@ interact={
 [layer_names]
 
 2d_physics/layer_1="actor"
+3d_physics/layer_1="actor"
 2d_physics/layer_2="interactable"
+3d_physics/layer_2="interactable"
 2d_physics/layer_3="hit"
+3d_physics/layer_3="hit"
+3d_physics/layer_4="wall"
 
 [physics]
 

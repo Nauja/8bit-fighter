@@ -1,0 +1,72 @@
+[gd_scene load_steps=15 format=3 uid="uid://bcrn78a3m38if"]
+
+[ext_resource type="PackedScene" uid="uid://d1yush5raybm1" path="res://src/entity/actor/mob/basic_mob.tscn" id="1_73pwd"]
+[ext_resource type="Resource" uid="uid://b1jx5aoprio4m" path="res://src/entity/actor/mob/slime/slime_data.tres" id="2_ci760"]
+[ext_resource type="Script" path="res://src/entity/actor/player_controller.gd" id="3_d663m"]
+[ext_resource type="Script" path="res://src/input/local_input_device.gd" id="4_67gkg"]
+[ext_resource type="PackedScene" uid="uid://bwmnp4478ldr1" path="res://src/entity/actor/pickup/pickup.tscn" id="5_wcg2f"]
+[ext_resource type="Resource" uid="uid://bj3ccyna18uwm" path="res://src/entity/static/weapon/sword/sword_pickup_data.tres" id="6_0bc61"]
+[ext_resource type="Resource" uid="uid://d3d6ewvf4k3kc" path="res://src/entity/static/weapon/hammer/hammer_pickup_data.tres" id="7_liu2e"]
+[ext_resource type="PackedScene" uid="uid://bfpuvk2uhlqhp" path="res://src/entity/actor/hero/template/template_hero.tscn" id="8_15hj7"]
+[ext_resource type="Resource" uid="uid://dcxy4u6j8enml" path="res://src/entity/actor/hero/template/template_hero_data.tres" id="9_uuaxj"]
+[ext_resource type="PackedScene" uid="uid://c20sfpiq4it8" path="res://src/entity/actor/chest/chest.tscn" id="10_fvh1i"]
+[ext_resource type="Resource" uid="uid://h5oo3d83nfq3" path="res://src/entity/actor/chest/potion_chest_data.tres" id="11_svwro"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2nxmm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_aulry"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_voqvy"]
+
+[node name="AdventureLevel" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10.891, 0, 0, 0, 2.047, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("BoxMesh_2nxmm")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 9.81484, 8.27857)
+keep_aspect = 0
+projection = 1
+current = true
+size = 12.8
+near = 0.001
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5, -0.707107, 0.5, 0.0794592, 0.612372, 0.786566, -0.862372, -0.353553, 0.362372, 2.06127, 1.4564, 0.393855)
+
+[node name="PlayerController" type="Node3D" parent="."]
+script = ExtResource("3_d663m")
+
+[node name="LocalInputDevice" type="Node3D" parent="."]
+script = ExtResource("4_67gkg")
+
+[node name="Pickup" parent="." instance=ExtResource("5_wcg2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00949824, 1.03703, 0.877476)
+_actor_sheet = ExtResource("6_0bc61")
+
+[node name="BasicMob" parent="." instance=ExtResource("1_73pwd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92, 1.08, -0.2)
+_actor_sheet = ExtResource("2_ci760")
+
+[node name="Pickup2" parent="." instance=ExtResource("5_wcg2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.887249, 1.04713, 1.28063)
+_actor_sheet = ExtResource("7_liu2e")
+
+[node name="TemplateHero" parent="." instance=ExtResource("8_15hj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.527998, 1.03618, -0.047285)
+_actor_sheet = ExtResource("9_uuaxj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56563, 1.10671, 0)
+mesh = SubResource("BoxMesh_aulry")
+
+[node name="Area3D" type="CharacterBody3D" parent="MeshInstance3D2"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/Area3D"]
+shape = SubResource("BoxShape3D_voqvy")
+
+[node name="Chest" parent="." instance=ExtResource("10_fvh1i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12, 1.36, -0.04)
+_actor_sheet = ExtResource("11_svwro")

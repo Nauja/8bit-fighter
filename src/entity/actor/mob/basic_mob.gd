@@ -8,11 +8,11 @@ var mob_sheet: BasicMobSheet:
 	set = _set_mob_sheet
 
 # Area to detect interactables
-@onready var _interaction_area: Area2D = %InteractionArea
+@onready var _interaction_area: Area3D = %InteractionArea
 # Area to detect liftables
-@onready var _lift_area: Area2D = %LiftArea
+@onready var _lift_area: Area3D = %LiftArea
 # Slot for lifted object
-@onready var _lift_slot: Node2D = %LiftSlot
+@onready var _lift_slot: Node3D = %LiftSlot
 
 
 func _get_mob_sheet() -> BasicMobSheet:
@@ -24,7 +24,7 @@ func _set_mob_sheet(val: BasicMobSheet) -> void:
 	if val:
 		name = val.display_name
 	if sprite != null:
-		sprite.texture = val.sprite_sheet if val else null
+		sprite.atlas = val.sprite_sheet if val else null
 
 
 func _ready():
@@ -81,26 +81,24 @@ func throw() -> bool:
 		body.get_parent().remove_child(body)
 		get_parent().add_child(body)
 		body.position = position
-		body.z = _lift_slot.position.y
-		body.z_speed = -10.0
-		body.velocity = Vector2(400.0, 0.0)
+		body.velocity = Vector3(4.0, 0.0, 0.0)
 		body.push_state(Enums.EActorState.Thrown)
 
 	push_state(Enums.EActorState.Move)
 	return true
 
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(area: Area3D) -> void:
 	print(name, " entered ", area)
 	if area.is_in_group("interactable"):
 		add_interactable(area)
 
 
-func _on_area_exited(area: Area2D) -> void:
+func _on_area_exited(area: Area3D) -> void:
 	print(name, " exited ", area)
 	if area.is_in_group("interactable"):
 		remove_interactable(area)
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: Node3D) -> void:
 	print(name, " entered ", body)

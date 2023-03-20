@@ -1,23 +1,29 @@
-[gd_scene load_steps=22 format=3 uid="uid://bfpuvk2uhlqhp"]
+[gd_scene load_steps=24 format=3 uid="uid://bfpuvk2uhlqhp"]
 
 [ext_resource type="Script" path="res://src/entity/actor/hero/hero.gd" id="1_l7syp"]
 [ext_resource type="Texture2D" uid="uid://dvuryjsjkusra" path="res://src/entity/actor/hero/template/template.png" id="2_vdxo7"]
+[ext_resource type="Script" path="res://src/utility/super_sprite_3d.gd" id="3_4gt6v"]
 [ext_resource type="PackedScene" uid="uid://by0ci7xxcfg75" path="res://src/entity/actor/weapon_slot.tscn" id="3_8kx2s"]
 [ext_resource type="Script" path="res://src/entity/actor/action/move_action.gd" id="4_1wq13"]
+[ext_resource type="Texture2D" uid="uid://prhj7fw806vs" path="res://src/entity/actor/hero/template/template_hero_atlas.tres" id="4_qpjsd"]
 [ext_resource type="Script" path="res://src/entity/actor/action/hit_action.gd" id="5_2vesn"]
 [ext_resource type="Script" path="res://src/entity/actor/action/lift_action.gd" id="5_5c58p"]
 [ext_resource type="Script" path="res://src/entity/actor/action/lifted_action.gd" id="6_2llqg"]
 [ext_resource type="Script" path="res://src/entity/actor/action/attack_action.gd" id="6_43i73"]
 [ext_resource type="Script" path="res://src/entity/actor/action/thrown_action.gd" id="7_xqkld"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8uocb"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l3cev"]
+radius = 0.28
+height = 0.72
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4msnu"]
 
 [sub_resource type="Animation" id="2"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Holder/Sprite2D:frame")
+tracks/0/path = NodePath("SpritePerspective/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -29,7 +35,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Holder/Sprite2D:frame_coords")
+tracks/1/path = NodePath("SpritePerspective/Sprite:frame_coords")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -41,34 +47,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Holder/WeaponSlot:position")
+tracks/2/path = NodePath("SpritePerspective/Sprite/WeaponSlot:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3, -10)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Holder/WeaponSlot:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.35006]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Holder/WeaponSlot:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -82,7 +64,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Holder/Sprite2D:frame_coords")
+tracks/0/path = NodePath("SpritePerspective/Sprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -94,31 +76,31 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Holder/WeaponSlot:position")
+tracks/1/path = NodePath("SpritePerspective/Sprite/WeaponSlot:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.15, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(3, -10), Vector2(3, -10), Vector2(6, -4), Vector2(6, -4)]
+"values": [Vector3(0.2, 0.24, 0), Vector3(0.2, 0.24, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Holder/WeaponSlot:rotation")
+tracks/2/path = NodePath("SpritePerspective/Sprite/WeaponSlot:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.15, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-0.831485, -0.831485, 1.35006, 1.35006]
+"values": [Vector3(0, 0, 0.523599), Vector3(0, 0, 0.523599), Vector3(0, 0, -1.0472), Vector3(0, 0, -1.0472)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Holder/WeaponSlot:visible")
+tracks/3/path = NodePath("SpritePerspective/Sprite/WeaponSlot:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -135,7 +117,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Holder/Sprite2D:frame")
+tracks/0/path = NodePath("SpritePerspective/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -147,34 +129,22 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Holder/WeaponSlot:position")
+tracks/1/path = NodePath("SpritePerspective/Sprite/WeaponSlot:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(4, -5)]
+"values": [Vector3(0.2, 0.24, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Holder/WeaponSlot:rotation")
+tracks/2/path = NodePath("SpritePerspective/Sprite/WeaponSlot:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Holder/WeaponSlot:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -187,7 +157,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Holder/Sprite2D:frame_coords")
+tracks/0/path = NodePath("SpritePerspective/Sprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -199,7 +169,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Holder/WeaponSlot:visible")
+tracks/1/path = NodePath("SpritePerspective/Sprite/WeaponSlot:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -216,7 +186,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Holder/Sprite2D:frame_coords")
+tracks/0/path = NodePath("SpritePerspective/Sprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -228,7 +198,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Holder/WeaponSlot:visible")
+tracks/1/path = NodePath("SpritePerspective/Sprite/WeaponSlot:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -245,7 +215,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Holder/Sprite2D:frame_coords")
+tracks/0/path = NodePath("SpritePerspective/Sprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -257,34 +227,22 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Holder/WeaponSlot:rotation")
+tracks/1/path = NodePath("SpritePerspective/Sprite/WeaponSlot:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector3(0.2, 0.24, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Holder/WeaponSlot:position")
+tracks/2/path = NodePath("SpritePerspective/Sprite/WeaponSlot:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(4, -5)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Holder/WeaponSlot:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -301,26 +259,52 @@ _data = {
 "move": SubResource("Animation_1atq1")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wjhp2"]
-radius = 3.16228
+[sub_resource type="SphereShape3D" id="SphereShape3D_c0vhe"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8llpk"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_j65t3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_oflrj"]
-radius = 3.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_11oue"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xeptd"]
-radius = 6.0
-
-[node name="TemplateHero" type="CharacterBody2D"]
-collision_mask = 0
+[node name="TemplateHero" type="CharacterBody3D"]
+collision_mask = 8
 script = ExtResource("1_l7syp")
-_equipment_slot_paths = Array[NodePath]([NodePath("Holder/WeaponSlot")])
-team = null
+_equipment_slot_paths = Array[NodePath]([NodePath("SpritePerspective/Sprite/WeaponSlot")])
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
-shape = SubResource("CircleShape2D_8uocb")
+[node name="CollisionShape2D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0)
+shape = SubResource("CapsuleShape3D_l3cev")
+
+[node name="SpritePerspective" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite" type="Sprite3D" parent="SpritePerspective"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+offset = Vector2(0, 16)
+pixel_size = 0.04
+texture_filter = 0
+texture = ExtResource("2_vdxo7")
+hframes = 8
+vframes = 8
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 256)
+script = ExtResource("3_4gt6v")
+atlas = ExtResource("4_qpjsd")
+
+[node name="WeaponSlot" parent="SpritePerspective/Sprite" instance=ExtResource("3_8kx2s")]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0.2, 0.24, 0)
+_area_path = NodePath("WeaponArea")
+
+[node name="WeaponArea" type="Area3D" parent="SpritePerspective/Sprite/WeaponSlot"]
+collision_layer = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape3D" parent="SpritePerspective/Sprite/WeaponSlot/WeaponArea"]
+shape = SubResource("SphereShape3D_4msnu")
+
+[node name="LiftSlot" type="Node3D" parent="SpritePerspective/Sprite"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -328,85 +312,53 @@ libraries = {
 "": SubResource("AnimationLibrary_vnoy8")
 }
 
-[node name="MoveAction" type="Node2D" parent="."]
+[node name="MoveAction" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_1wq13")
 _entity_path = NodePath("..")
 
-[node name="LiftAction" type="Node2D" parent="."]
+[node name="LiftAction" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_5c58p")
-_lift_slot_path = NodePath("../Holder/LiftSlot")
+_lift_slot_path = NodePath("../SpritePerspective/Sprite/LiftSlot")
 _entity_path = NodePath("..")
 
-[node name="HitAction" type="Node2D" parent="."]
+[node name="HitAction" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_2vesn")
 _entity_path = NodePath("..")
 
-[node name="AttackAction" type="Node2D" parent="."]
+[node name="AttackAction" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("6_43i73")
 _entity_path = NodePath("..")
 
-[node name="LiftedAction" type="Node2D" parent="."]
+[node name="LiftedAction" type="Node3D" parent="."]
 script = ExtResource("6_2llqg")
 _entity_path = NodePath("..")
 
-[node name="ThrownAction" type="Node2D" parent="."]
+[node name="ThrownAction" type="Node3D" parent="."]
 script = ExtResource("7_xqkld")
 _entity_path = NodePath("..")
 
-[node name="Holder" type="Node2D" parent="."]
-unique_name_in_owner = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Holder"]
-unique_name_in_owner = true
-position = Vector2(0, -16)
-texture = ExtResource("2_vdxo7")
-hframes = 8
-vframes = 8
-region_rect = Rect2(1, 4, 31, 10)
-
-[node name="LiftSlot" type="Node2D" parent="Holder"]
-unique_name_in_owner = true
-position = Vector2(0, -11)
-
-[node name="WeaponSlot" parent="Holder" instance=ExtResource("3_8kx2s")]
-position = Vector2(3, -10)
-rotation = 1.35006
-_area_path = NodePath("WeaponArea")
-
-[node name="WeaponArea" type="Area2D" parent="Holder/WeaponSlot"]
-position = Vector2(7.38932, -6.7378)
-collision_layer = 4
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Holder/WeaponSlot/WeaponArea"]
-shape = SubResource("CircleShape2D_wjhp2")
-
-[node name="InteractionArea" type="Area2D" parent="Holder"]
+[node name="InteractionArea" type="Area3D" parent="."]
 unique_name_in_owner = true
 collision_mask = 2
 monitorable = false
 
-[node name="InteractionCollisionShape" type="CollisionShape2D" parent="Holder/InteractionArea"]
-position = Vector2(0, -8)
-shape = SubResource("CircleShape2D_8llpk")
+[node name="InteractionCollisionShape" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_c0vhe")
 
-[node name="LiftArea" type="Area2D" parent="Holder"]
+[node name="LiftArea" type="Area3D" parent="."]
 unique_name_in_owner = true
 monitorable = false
 
-[node name="LiftCollisionShape" type="CollisionShape2D" parent="Holder/LiftArea"]
-position = Vector2(8, -1)
-shape = SubResource("CircleShape2D_oflrj")
+[node name="LiftCollisionShape" type="CollisionShape3D" parent="LiftArea"]
+shape = SubResource("SphereShape3D_j65t3")
 
-[node name="HitBoxArea" type="Area2D" parent="Holder"]
-position = Vector2(0, -8)
+[node name="HitBoxArea" type="Area3D" parent="."]
 collision_mask = 4
 monitoring = false
 
-[node name="HitBoxCollisionShape" type="CollisionShape2D" parent="Holder/HitBoxArea"]
-position = Vector2(0, 4)
-shape = SubResource("CircleShape2D_xeptd")
+[node name="HitBoxCollisionShape" type="CollisionShape3D" parent="HitBoxArea"]
+shape = SubResource("SphereShape3D_11oue")

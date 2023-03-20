@@ -1,5 +1,5 @@
 class_name EquipmentSlot
-extends Node2D
+extends Node3D
 
 # Corresponding slot
 @export var slot: Enums.EEquipmentSlot:

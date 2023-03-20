@@ -1,5 +1,5 @@
 class_name EntityAction
-extends Node2D
+extends Node3D
 
 # States of an action
 enum EEntityActionState { Idle, WaitPlaying, Playing, Canceled, Done }

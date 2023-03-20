@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://c20sfpiq4it8"]
+[gd_scene load_steps=15 format=3 uid="uid://c20sfpiq4it8"]
 
 [ext_resource type="Script" path="res://src/entity/actor/chest/chest.gd" id="1_sjdea"]
-[ext_resource type="Texture2D" uid="uid://bo6xah1cuu2sl" path="res://src/entity/actor/chest/closed_chest_atlas.tres" id="2_y5iqy"]
+[ext_resource type="Texture2D" uid="uid://dg7mplwjlef8x" path="res://src/level/level.png" id="2_eem0i"]
+[ext_resource type="Texture2D" uid="uid://dj7tnhjoqs5aq" path="res://src/entity/actor/chest/chest_atlas.tres" id="2_nhqem"]
+[ext_resource type="Script" path="res://src/utility/super_sprite_3d.gd" id="3_gh62k"]
 [ext_resource type="Script" path="res://src/entity/actor/chest/chest_interactable.gd" id="3_pkguk"]
 [ext_resource type="Script" path="res://src/entity/actor/action/lifted_action.gd" id="4_44n6g"]
 [ext_resource type="Script" path="res://src/entity/actor/action/thrown_action.gd" id="5_kkhdk"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rb56q"]
-radius = 4.0
-height = 18.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_b76hq"]
+radius = 0.175591
 
 [sub_resource type="Animation" id="Animation_6wdkq"]
 resource_name = "idle"
@@ -30,18 +31,29 @@ _data = {
 "thrown": SubResource("Animation_5ns7p")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_x65ws"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_imprn"]
 
-[node name="Chest" type="CharacterBody2D"]
+[node name="Chest" type="CharacterBody3D"]
 collision_mask = 0
 script = ExtResource("1_sjdea")
-_equipment_slot_paths = null
-team = null
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
-rotation = 1.57079
-shape = SubResource("CapsuleShape2D_rb56q")
+[node name="CollisionShape2D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28, 0)
+shape = SubResource("SphereShape3D_b76hq")
+
+[node name="SpritePerspective" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite" type="Sprite3D" parent="SpritePerspective"]
+unique_name_in_owner = true
+offset = Vector2(0, 8)
+pixel_size = 0.04
+texture_filter = 0
+texture = ExtResource("2_eem0i")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 16)
+script = ExtResource("3_gh62k")
+atlas = ExtResource("2_nhqem")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -49,30 +61,21 @@ libraries = {
 "": SubResource("AnimationLibrary_idmob")
 }
 
-[node name="Holder" type="Node2D" parent="."]
-unique_name_in_owner = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Holder"]
-unique_name_in_owner = true
-position = Vector2(0, -8)
-texture = ExtResource("2_y5iqy")
-
-[node name="InteractableArea" type="Area2D" parent="Holder" groups=["interactable"]]
+[node name="InteractableArea" type="Area3D" parent="." groups=["interactable"]]
 collision_layer = 2
 monitoring = false
 script = ExtResource("3_pkguk")
-_chest_path = NodePath("../..")
+_chest_path = NodePath("..")
 
-[node name="InteractableCollisionShape" type="CollisionShape2D" parent="Holder/InteractableArea"]
-position = Vector2(0, -9)
-shape = SubResource("CircleShape2D_x65ws")
+[node name="InteractableCollisionShape" type="CollisionShape3D" parent="InteractableArea"]
+shape = SubResource("SphereShape3D_imprn")
 
-[node name="LiftedAction" type="Node2D" parent="."]
+[node name="LiftedAction" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_44n6g")
 _entity_path = NodePath("..")
 
-[node name="ThrownAction" type="Node2D" parent="."]
+[node name="ThrownAction" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_kkhdk")
 _entity_path = NodePath("..")

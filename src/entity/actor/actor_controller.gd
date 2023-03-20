@@ -1,5 +1,5 @@
 class_name ActorController
-extends Node2D
+extends Node3D
 
 var actor: Actor:
 	get = _get_actor,

@@ -46,15 +46,15 @@ var interact_input_delay: float:
 		return actor_sheet.interact_input_delay
 
 # Nodes
-@onready var sprite: Sprite2D = %Sprite2D:
+@onready var sprite: SuperSprite3D = %Sprite:
 	get:
 		return sprite
+# Node used to fake perspective for the sprite
+@onready var _sprite_perspective: Node3D = %SpritePerspective
 # Animation player
 @onready var animation_player: AnimationPlayer = %AnimationPlayer:
 	get:
 		return animation_player
-# Hold all height dependent nodes
-@onready var _holder: Node2D = %Holder
 # Equipment slots
 @export var _equipment_slot_paths: Array[NodePath]
 var equipment_slots = {}
@@ -72,11 +72,6 @@ var equipment_slots = {}
 @export var team: int
 # Input values assigned from controller
 var input: Vector2
-# Height of the actor
-var z: float:
-	get = _get_z,
-	set = _set_z
-var z_speed: float
 
 # Current state
 var state: Enums.EActorState:
@@ -110,7 +105,7 @@ var is_lifting: bool
 var is_liftable: bool = true
 
 # Possible interactions
-var interactables: Array[Node2D] = []
+var interactables: Array[Node3D] = []
 
 
 func _get_direction() -> Enums.EDirection:
@@ -120,24 +115,13 @@ func _get_direction() -> Enums.EDirection:
 func _set_direction(value: Enums.EDirection) -> void:
 	direction = value
 	if value == Enums.EDirection.LEFT:
-		scale = Vector2(1.0, -1.0)
-		rotation_degrees = 180.0
+		_sprite_perspective.rotation_degrees = Vector3(45.0, 180.0, 0.0)
 	elif value == Enums.EDirection.RIGHT:
-		scale = Vector2(1.0, 1.0)
-		rotation_degrees = 0.0
-
-
-func _get_z() -> float:
-	return z
-
-
-func _set_z(val: float) -> void:
-	z = val
-	_holder.position.y = val
+		_sprite_perspective.rotation_degrees = Vector3(-45.0, 0.0, 0.0)
 
 
 # Get an equipment slot by position
-func get_equipment_slot(pos: int) -> Node2D:
+func get_equipment_slot(pos: int) -> Node3D:
 	return equipment_slots.get(pos)
 
 
@@ -148,6 +132,7 @@ func can_move() -> bool:
 
 func _ready():
 	_gather_equipment_slots()
+	direction = Enums.EDirection.RIGHT
 
 
 # Build the list of equipment slots
@@ -168,13 +153,13 @@ func equip(other: Resource) -> void:
 
 
 # Add a possible interaction to the list
-func add_interactable(other: Node2D) -> void:
+func add_interactable(other: Node3D) -> void:
 	if not other in interactables:
 		interactables.append(other)
 
 
 # Remove an interaction from the list
-func remove_interactable(other: Node2D) -> void:
+func remove_interactable(other: Node3D) -> void:
 	var index = interactables.find(other)
 	if index != -1:
 		interactables.remove_at(index)
@@ -190,6 +175,8 @@ func _physics_process(delta):
 		want_interact = false
 	elif want_attack and attack():
 		want_attack = false
+
+	sprite.rotation_degrees = Vector3(0.0, 0.0, 45.0)
 
 
 # Try to interact with a nearby object

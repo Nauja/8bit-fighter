@@ -1,5 +1,5 @@
 class_name MobSpawner
-extends Node2D
+extends Node3D
 
 @export var root_node: NodePath
 @onready var _root = get_node(root_node)

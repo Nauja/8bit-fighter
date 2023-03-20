@@ -1,5 +1,5 @@
 class_name Entity
-extends Node2D
+extends CharacterBody3D
 
 # Declare member variables here. Examples:
 # var a = 2

@@ -1,6 +1,6 @@
 # Handle interaction with the pickup
 class_name PickupInteractable
-extends Area2D
+extends Area3D
 
 # Owner
 @export var _owner_path: NodePath

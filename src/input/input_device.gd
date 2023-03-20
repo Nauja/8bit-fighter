@@ -1,2 +1,2 @@
 class_name InputDevice
-extends Node2D
+extends Node3D

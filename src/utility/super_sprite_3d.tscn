@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://t7yc6n6yb0db"]
+
+[ext_resource type="Script" path="res://src/utility/super_sprite_3d.gd" id="1_gqvlx"]
+
+[node name="SuperSprite3D" type="Sprite3D"]
+texture_filter = 0
+script = ExtResource("1_gqvlx")

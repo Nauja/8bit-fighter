@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://b3cjfdtuh32eg"]
 
 [ext_resource type="Script" path="res://src/level/adventure/adventure_level.gd" id="1"]
-[ext_resource type="Resource" path="res://src/entity/actor/mob/slime/slime_data.tres" id="2"]
+[ext_resource type="Resource" uid="uid://b1jx5aoprio4m" path="res://src/entity/actor/mob/slime/slime_data.tres" id="2"]
 [ext_resource type="Script" path="res://src/entity/static/spawner/mob_spawner.gd" id="3"]
 [ext_resource type="Script" path="res://src/entity/actor/player_controller.gd" id="4"]
 [ext_resource type="Resource" uid="uid://dcxy4u6j8enml" path="res://src/entity/actor/hero/template/template_hero_data.tres" id="4_l1vgm"]
@@ -34,19 +34,13 @@ script = ExtResource("4")
 script = ExtResource("5")
 
 [node name="Chest" parent="." instance=ExtResource("10_nom8r")]
-position = Vector2(110, 91)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110, 91, 0)
 _actor_sheet = ExtResource("8_y8x87")
-_equipment_slot_paths = null
-team = null
 
 [node name="Pickup" parent="." instance=ExtResource("8_0hejs")]
-position = Vector2(69, 76)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, 76, 0)
 _actor_sheet = ExtResource("9_lbf70")
-_equipment_slot_paths = null
-team = null
 
 [node name="Pickup2" parent="." instance=ExtResource("8_0hejs")]
-position = Vector2(69, 109)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, 109, 0)
 _actor_sheet = ExtResource("10_2wr62")
-_equipment_slot_paths = null
-team = null
