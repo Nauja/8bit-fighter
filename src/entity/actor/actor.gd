@@ -9,19 +9,39 @@ var actor_sheet: ActorSheet:
 	set(val):
 		_actor_sheet = val
 
-var speed: int:
+var weight: float:
+	get:
+		return actor_sheet.weight
+
+var speed: float:
 	get:
 		return actor_sheet.speed
 
-var jump_speed: int:
+var jump_speed: float:
 	get:
 		return actor_sheet.jump_speed
 
-var lifting_speed: int:
+var max_fall_speed: float:
+	get:
+		return actor_sheet.max_fall_speed
+
+var lifting_speed: float:
 	get:
 		return actor_sheet.lifting_speed
 
-var gravity: int:
+var lifting_speed_multiplier: float:
+	get:
+		return actor_sheet.lifting_speed_multiplier
+
+var throw_speed: float:
+	get:
+		return actor_sheet.throw_speed
+
+var throw_speed_multiplier: float:
+	get:
+		return actor_sheet.throw_speed_multiplier
+
+var gravity: float:
 	get:
 		return actor_sheet.gravity
 
@@ -31,7 +51,11 @@ var gravity_multiplier_falling: float:
 
 var friction: float:
 	get:
-		return actor_sheet.friction
+		return weight * gravity
+
+var air_friction: float:
+	get:
+		return actor_sheet.air_friction
 
 var acceleration: float:
 	get:
@@ -41,11 +65,35 @@ var attack_input_delay: float:
 	get:
 		return actor_sheet.attack_input_delay
 
+var jump_input_delay: float:
+	get:
+		return actor_sheet.jump_input_delay
+
 var interact_input_delay: float:
 	get:
 		return actor_sheet.interact_input_delay
 
+
+func can_move() -> bool:
+	return actor_sheet.can_move and (current_action.can_move() if current_action else true)
+
+
+func can_chase() -> bool:
+	return actor_sheet.can_chase
+
+
+func can_lift() -> bool:
+	return actor_sheet.can_lift and (current_action.can_lift() if current_action else true)
+
+
+func is_liftable() -> bool:
+	return actor_sheet.is_liftable
+
+
 # Nodes
+@onready var shadow: SuperSprite3D = %Shadow:
+	get:
+		return shadow
 @onready var sprite: SuperSprite3D = %Sprite:
 	get:
 		return sprite
@@ -65,14 +113,27 @@ var equipment_slots = {}
 	Enums.EActorState.Attack: %AttackAction,
 	Enums.EActorState.Lift: %LiftAction,
 	Enums.EActorState.Lifted: %LiftedAction,
-	Enums.EActorState.Thrown: %ThrownAction
+	Enums.EActorState.Thrown: %ThrownAction,
+	Enums.EActorState.Chase: %ChaseAction
 }
 
 # Team the actor is in
 @export var team: int
 # Input values assigned from controller
 var input: Vector2
-
+# Controller for this actor
+var controller: ActorController
+# Does the actor want to jump, including a slight delay
+var _want_jump_timer: float
+var want_jump:
+	get:
+		return _want_jump_timer > 0.0
+	set(value):
+		_want_jump_timer = jump_input_delay if value else 0.0
+# Is the jump input pressed this frame
+var is_jump_pressed: bool
+# Is the actor currently jumping
+var is_jumping: bool
 # Current state
 var state: Enums.EActorState:
 	get:
@@ -102,7 +163,21 @@ var direction: Enums.EDirection:
 	set = _set_direction
 # If the actor is lifting an object
 var is_lifting: bool
-var is_liftable: bool = true
+# Is the actor on ground, including a slight delay
+var is_on_ground_timer: float
+var is_on_ground: bool:
+	get:
+		return is_on_ground_timer > 0.0
+	set(value):
+		is_on_ground_timer = 0.1 if value else 0.0
+# Gravity multiplier for when falling
+var gravity_multiplier: float = 17
+var movement_force: Vector3 = Vector3.ZERO
+var applied_forces: Vector3 = Vector3.ZERO
+
+var perspective_enabled: bool:
+	get = _get_perspective_enabled,
+	set = _set_perspective_enabled
 
 # Possible interactions
 var interactables: Array[Node3D] = []
@@ -114,10 +189,7 @@ func _get_direction() -> Enums.EDirection:
 
 func _set_direction(value: Enums.EDirection) -> void:
 	direction = value
-	if value == Enums.EDirection.LEFT:
-		_sprite_perspective.rotation_degrees = Vector3(45.0, 180.0, 0.0)
-	elif value == Enums.EDirection.RIGHT:
-		_sprite_perspective.rotation_degrees = Vector3(-45.0, 0.0, 0.0)
+	_update_perspective()
 
 
 # Get an equipment slot by position
@@ -125,14 +197,40 @@ func get_equipment_slot(pos: int) -> Node3D:
 	return equipment_slots.get(pos)
 
 
-# Return if the actor can move during this action
-func can_move() -> bool:
-	return _current_action.can_move() if _current_action else true
+func _get_perspective_enabled() -> bool:
+	return perspective_enabled
+
+
+func _set_perspective_enabled(val: bool) -> void:
+	perspective_enabled = val
+	_update_perspective()
+
+
+func add_force(force: Vector3) -> void:
+	velocity += force
+
+
+func _update_perspective() -> void:
+	if direction == Enums.EDirection.LEFT:
+		rotation_degrees = Vector3(0.0, 180.0, 0.0)
+		_sprite_perspective.rotation_degrees = Vector3(
+			45.0 if perspective_enabled else 0.0, 0.0, 0.0
+		)
+	elif direction == Enums.EDirection.RIGHT:
+		rotation_degrees = Vector3.ZERO
+		_sprite_perspective.rotation_degrees = Vector3(
+			-45.0 if perspective_enabled else 0.0, 0.0, 0.0
+		)
 
 
 func _ready():
 	_gather_equipment_slots()
 	direction = Enums.EDirection.RIGHT
+	perspective_enabled = true
+	if not controller:
+		controller = %Controller
+	if controller:
+		controller.actor = self
 
 
 # Build the list of equipment slots
@@ -166,6 +264,8 @@ func remove_interactable(other: Node3D) -> void:
 
 
 func _physics_process(delta):
+	if _want_jump_timer > 0.0:
+		_want_jump_timer -= delta
 	if _want_attack_timer > 0.0:
 		_want_attack_timer -= delta
 	if _want_interact_timer > 0.0:
@@ -176,7 +276,18 @@ func _physics_process(delta):
 	elif want_attack and attack():
 		want_attack = false
 
-	sprite.rotation_degrees = Vector3(0.0, 0.0, 45.0)
+	if perspective_enabled:
+		shadow.visible = true
+		var space_state = get_world_3d().direct_space_state
+		var result = space_state.intersect_ray(
+			PhysicsRayQueryParameters3D.create(
+				global_position, -transform.basis.y * 100.0, 8, [self]
+			)
+		)
+		if result:
+			shadow.global_position = result["position"]
+	else:
+		shadow.visible = false
 
 
 # Try to interact with a nearby object

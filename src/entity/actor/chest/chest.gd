@@ -1,10 +1,18 @@
 class_name Chest
-extends Actor
+extends BasicMob
 
 # Chest sheet accessors
 var chest_sheet: ChestSheet:
 	get = _get_chest_sheet,
 	set = _set_chest_sheet
+
+var closed_texture: Texture2D:
+	get:
+		return chest_sheet.texture
+
+var opened_texture: Texture2D:
+	get:
+		return chest_sheet.opened_texture
 
 # If chest is open
 var is_open: bool:
@@ -28,11 +36,7 @@ func _get_is_open() -> bool:
 func _set_is_open(val: bool) -> void:
 	is_open = val
 	if sprite:
-		sprite.texture = (
-			(chest_sheet.opened_texture if val else chest_sheet.closed_texture)
-			if chest_sheet
-			else null
-		)
+		sprite.atlas = ((opened_texture if val else closed_texture) if chest_sheet else null)
 
 
 func _ready():

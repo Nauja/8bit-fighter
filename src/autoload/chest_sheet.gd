@@ -1,7 +1,6 @@
-extends ActorSheet
+class_name ChestSheet
+extends BasicMobSheet
 
-# Texture when closed
-@export var closed_texture: Texture2D
 # Texture when opened
 @export var opened_texture: Texture2D
 # Spawned reward

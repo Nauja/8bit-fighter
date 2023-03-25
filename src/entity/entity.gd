@@ -9,7 +9,9 @@ extends CharacterBody3D
 var _action_queue: Array[EntityAction] = []
 
 # Action currently playing
-var _current_action: EntityAction = null
+var current_action: EntityAction:
+	get:
+		return current_action
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,16 +21,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if _current_action and _current_action.is_done():
-		_current_action = null
+	if current_action and current_action.is_done():
+		current_action = null
 
 
 func push_action(action: EntityAction):
-	if _current_action:
-		_current_action.cancel()
+	if current_action:
+		current_action.cancel()
+		current_action._do_stop()
 
 	_action_queue = []
-	_current_action = action
+	current_action = action
 
 	if action:
 		_action_queue.append(action)

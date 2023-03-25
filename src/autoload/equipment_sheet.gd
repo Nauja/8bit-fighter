@@ -1,3 +1,4 @@
+class_name EquipmentSheet
 extends Resource
 
 # Slot where equipped

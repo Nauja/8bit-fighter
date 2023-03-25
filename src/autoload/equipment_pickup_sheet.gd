@@ -1,4 +1,5 @@
 # Pickup sheet for equipments
+class_name EquipmentPickupSheet
 extends PickupSheet
 
 # Sheet of the equipment

@@ -5,7 +5,7 @@ extends ActorAction
 func _do_start():
 	super()
 	actor.animation_player.connect("animation_finished", _on_animation_finished)
-	actor.animation_player.play("attack")
+	Utils.play(actor.animation_player, "attack")
 
 
 func _on_animation_finished(name: String):

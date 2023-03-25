@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c22ewbtpoyet"]
+
+[ext_resource type="AnimationLibrary" uid="uid://clk8cvpc8qhhs" path="res://src/entity/actor/pickup/animation/pickup_animation.res" id="1_1fm0j"]
+
+[node name="PickupAnimationPlayer" type="AnimationPlayer"]
+libraries = {
+"": ExtResource("1_1fm0j")
+}

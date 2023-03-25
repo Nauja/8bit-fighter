@@ -5,4 +5,4 @@ extends ActorAction
 func _do_start():
 	super()
 	if actor:
-		actor.animation_player.play("idle")
+		Utils.play(actor.animation_player, "idle")

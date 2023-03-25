@@ -16,8 +16,12 @@ func _get_move_animation() -> String:
 	return "lift_move"
 
 
-func _get_speed() -> int:
-	return actor.lifting_speed
+func _get_speed() -> float:
+	return max(super() - actor.lifting_speed_multiplier * (target.weight if target else 0), 0)
+
+
+func _get_jump_speed() -> float:
+	return max(super() - actor.lifting_speed_multiplier * (target.weight if target else 0), 0)
 
 
 func _do_start():

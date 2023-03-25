@@ -1,7 +1,5 @@
-extends ActorSheet
-
-# Texture of the pickup
-@export var texture: Texture2D
+class_name PickupSheet
+extends BasicMobSheet
 
 
 # An actor interacted with

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://b1jx5aoprio4m"]
+[gd_resource type="Resource" script_class="BasicMobSheet" load_steps=4 format=3 uid="uid://b1ikk0xur1gfr"]
 
 [ext_resource type="Script" path="res://src/autoload/basic_mob_sheet.gd" id="1"]
 [ext_resource type="Resource" uid="uid://dedwnl1ar70kk" path="res://src/entity/actor/mob/basic_mob_data.tres" id="2"]
@@ -6,17 +6,30 @@
 
 [resource]
 script = ExtResource("1")
-sprite_sheet = ExtResource("2_5siq7")
-hframes = 0
-vframes = 0
+texture = ExtResource("2_5siq7")
 template = ExtResource("2")
 display_name = "Slime"
-speed = 0
+weight = 0.0
+speed = 0.5
 jump_speed = 0
+max_fall_speed = 0.0
 lifting_speed = 0
+lifting_speed_multiplier = 0.0
+throw_speed = 0.0
+throw_speed_multiplier = 0.0
 gravity = 0
 gravity_multiplier_falling = 0.0
 friction = 0.0
+air_friction = 0.0
 acceleration = 0.0
 attack_input_delay = 0.1
+jump_input_delay = 0.1
 interact_input_delay = 0.1
+override_can_move = false
+can_move = false
+override_can_chase = false
+can_chase = false
+override_can_lift = true
+can_lift = false
+override_is_liftable = false
+is_liftable = false

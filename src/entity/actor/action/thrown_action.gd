@@ -1,15 +1,16 @@
 class_name ThrownAction
-extends ActorAction
+extends MoveAction
 
 
 func _do_start():
 	super()
-	actor.animation_player.play("thrown")
 
 
 func _physics_process(delta):
+	super(delta)
+
 	if not is_playing():
 		return
 
-	actor.set_up_direction(Vector3.UP)
-	actor.move_and_slide()
+	if actor.is_on_floor():
+		actor.push_state(Enums.EActorState.Move)

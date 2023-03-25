@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwmnp4478ldr1"]
+[gd_scene load_steps=9 format=3 uid="uid://tbjq8mt1hpqs"]
 
 [ext_resource type="Script" path="res://src/entity/actor/pickup/pickup.gd" id="1_exmka"]
 [ext_resource type="Texture2D" uid="uid://da7lga07vg522" path="res://src/entity/static/weapon/sword/sword_pickup_atlas.tres" id="2_sn5vd"]
@@ -28,6 +28,7 @@ unique_name_in_owner = true
 sorting_offset = 0.32
 offset = Vector2(0, 8)
 pixel_size = 0.04
+alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("2_sn5vd")
 region_rect = Rect2(0, 0, 16, 16)

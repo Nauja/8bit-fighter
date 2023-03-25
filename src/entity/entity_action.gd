@@ -45,6 +45,10 @@ func _do_start() -> void:
 	pass
 
 
+func _do_stop() -> void:
+	pass
+
+
 # Cancel the action
 func cancel() -> void:
 	state = EEntityActionState.Canceled

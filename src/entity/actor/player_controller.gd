@@ -6,11 +6,17 @@ extends ActorController
 var id: int:
 	get = _get_id,
 	set = _set_id
-
+# Device id
+var device: int:
+	get:
+		return input_device.device
+	set(val):
+		input_device.device = val
 # Connected input device
-@onready var input_device: InputDevice = %InputDevice
+@onready var input_device: LocalInputDevice = %LocalInputDevice
 
 var _was_attack_pressed: bool
+var _was_jump_pressed: bool
 var _was_interact_pressed: bool
 
 
@@ -24,7 +30,7 @@ func _get_id() -> int:
 
 
 func _process(delta):
-	if not actor:
+	if not is_attached():
 		return
 
 	if not input_device:
@@ -55,6 +61,15 @@ func _process(delta):
 	else:
 		actor.is_attack_pressed = false
 		_was_attack_pressed = false
+
+	if input_device.is_action_pressed("jump"):
+		actor.is_jump_pressed = true
+		if not _was_jump_pressed:
+			actor.want_jump = true
+			_was_jump_pressed = true
+	else:
+		actor.is_jump_pressed = false
+		_was_jump_pressed = false
 
 	if input_device.is_action_pressed("interact"):
 		actor.is_interact_pressed = true

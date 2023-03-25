@@ -1,24 +1,37 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dcxy4u6j8enml"]
+[gd_resource type="Resource" script_class="BasicMobSheet" load_steps=5 format=3 uid="uid://di7f76cdghwcm"]
 
-[ext_resource type="PackedScene" uid="uid://bfpuvk2uhlqhp" path="res://src/entity/actor/hero/template/template_hero.tscn" id="1_c3e58"]
+[ext_resource type="AnimationLibrary" uid="uid://crqeqwr2r3kf7" path="res://src/entity/actor/hero/template/animation/template_hero_animation.res" id="1_qhpbh"]
 [ext_resource type="Script" path="res://src/autoload/basic_mob_sheet.gd" id="2_3x6le"]
 [ext_resource type="Texture2D" uid="uid://prhj7fw806vs" path="res://src/entity/actor/hero/template/template_hero_atlas.tres" id="3_0s0st"]
 [ext_resource type="Resource" uid="uid://dedwnl1ar70kk" path="res://src/entity/actor/mob/basic_mob_data.tres" id="4_06f3o"]
 
 [resource]
 script = ExtResource("2_3x6le")
-sprite_sheet = ExtResource("3_0s0st")
-hframes = 0
-vframes = 0
+texture = ExtResource("3_0s0st")
+_animation = ExtResource("1_qhpbh")
 template = ExtResource("4_06f3o")
-scene = ExtResource("1_c3e58")
 display_name = "Template"
-speed = 2
-jump_speed = 0
-lifting_speed = 1
-gravity = 0
+weight = 0.0
+speed = 2.5
+jump_speed = 4.0
+max_fall_speed = -10.0
+lifting_speed = 0.0
+lifting_speed_multiplier = 0.0
+throw_speed = 0.0
+throw_speed_multiplier = 0.0
+gravity = 0.0
 gravity_multiplier_falling = 0.0
-friction = 0.0
-acceleration = 0.0
+friction = 10.0
+air_friction = 4.0
+acceleration = 10.0
 attack_input_delay = 0.1
+jump_input_delay = 0.1
 interact_input_delay = 0.1
+override_can_move = false
+can_move = false
+override_can_chase = false
+can_chase = false
+override_can_lift = false
+can_lift = false
+override_is_liftable = false
+is_liftable = false

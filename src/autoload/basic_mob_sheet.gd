@@ -1,32 +1,24 @@
+class_name BasicMobSheet
 extends ActorSheet
 
-# Sprite2D sheet of the mob
-@export var sprite_sheet: Texture2D:
-	get = get_sprite_sheet
-# Number of horizontal frames in the spritesheet
-@export var hframes: int:
-	get = get_hframes
-# Number of vertical frames in the spritesheet
-@export var vframes: int:
-	get = get_vframes
+# Texture of the mob
+@export var texture: Texture2D:
+	get = get_texture
+# Animations
+@export var _animation: Resource
+var animation: AnimationLibrary:
+	get = get_animation
 
 
-func get_sprite_sheet():
-	if sprite_sheet != null or template == null:
-		return sprite_sheet
+func get_texture():
+	if texture != null or template == null:
+		return texture
 
-	return template.sprite_sheet
-
-
-func get_hframes():
-	if hframes != 0 or template == null:
-		return hframes
-
-	return template.hframes
+	return template.texture
 
 
-func get_vframes():
-	if vframes != 0 or template == null:
-		return vframes
+func get_animation():
+	if _animation != null or template == null:
+		return _animation
 
-	return template.vframes
+	return template.animation

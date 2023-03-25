@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ydriaa6vpeee"]
+
+[ext_resource type="AnimationLibrary" uid="uid://crqeqwr2r3kf7" path="res://src/entity/actor/hero/template/animation/template_hero_animation.res" id="1_3p2su"]
+
+[node name="TemplateHeroAnimationPlayer" type="AnimationPlayer"]
+libraries = {
+"": ExtResource("1_3p2su")
+}

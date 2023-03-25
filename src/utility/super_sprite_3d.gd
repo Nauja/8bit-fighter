@@ -26,3 +26,5 @@ func _set_atlas(val: Texture2D) -> void:
 
 func _ready():
 	texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+	sorting_use_aabb_center = true
+	alpha_cut = SpriteBase3D.ALPHA_CUT_OPAQUE_PREPASS

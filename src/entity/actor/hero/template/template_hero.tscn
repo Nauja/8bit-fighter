@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bfpuvk2uhlqhp"]
+[gd_scene load_steps=17 format=3 uid="uid://ccadex8b1gkcv"]
 
 [ext_resource type="Script" path="res://src/entity/actor/hero/hero.gd" id="1_l7syp"]
 [ext_resource type="Texture2D" uid="uid://dvuryjsjkusra" path="res://src/entity/actor/hero/template/template.png" id="2_vdxo7"]
@@ -18,247 +18,6 @@ height = 0.72
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4msnu"]
 
-[sub_resource type="Animation" id="2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpritePerspective/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpritePerspective/Sprite:frame_coords")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SpritePerspective/Sprite/WeaponSlot:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="4"]
-resource_name = "attack"
-length = 0.2
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpritePerspective/Sprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpritePerspective/Sprite/WeaponSlot:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.2, 0.24, 0), Vector3(0.2, 0.24, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SpritePerspective/Sprite/WeaponSlot:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.15, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0.523599), Vector3(0, 0, 0.523599), Vector3(0, 0, -1.0472), Vector3(0, 0, -1.0472)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("SpritePerspective/Sprite/WeaponSlot:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="3"]
-resource_name = "idle"
-length = 0.001
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpritePerspective/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpritePerspective/Sprite/WeaponSlot:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.2, 0.24, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SpritePerspective/Sprite/WeaponSlot:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_et5kv"]
-resource_name = "lift_idle"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpritePerspective/Sprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpritePerspective/Sprite/WeaponSlot:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_6th2h"]
-resource_name = "lift_move"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpritePerspective/Sprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(1, 1), Vector2i(0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpritePerspective/Sprite/WeaponSlot:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_1atq1"]
-resource_name = "move"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpritePerspective/Sprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(1, 0), Vector2i(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpritePerspective/Sprite/WeaponSlot:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.2, 0.24, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SpritePerspective/Sprite/WeaponSlot:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vnoy8"]
-_data = {
-"RESET": SubResource("2"),
-"attack": SubResource("4"),
-"idle": SubResource("3"),
-"lift_idle": SubResource("Animation_et5kv"),
-"lift_move": SubResource("Animation_6th2h"),
-"move": SubResource("Animation_1atq1")
-}
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_c0vhe"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j65t3"]
@@ -277,22 +36,38 @@ shape = SubResource("CapsuleShape3D_l3cev")
 [node name="SpritePerspective" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="Sprite" type="Sprite3D" parent="SpritePerspective"]
+[node name="Shadow" type="Sprite3D" parent="SpritePerspective"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-offset = Vector2(0, 16)
 pixel_size = 0.04
+alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("2_vdxo7")
 hframes = 8
 vframes = 8
+frame = 16
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 256)
+script = ExtResource("3_4gt6v")
+atlas = ExtResource("4_qpjsd")
+
+[node name="Sprite" type="Sprite3D" parent="SpritePerspective"]
+unique_name_in_owner = true
+offset = Vector2(0, 16)
+pixel_size = 0.04
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("2_vdxo7")
+hframes = 8
+vframes = 8
+frame = 8
 region_enabled = true
 region_rect = Rect2(0, 0, 256, 256)
 script = ExtResource("3_4gt6v")
 atlas = ExtResource("4_qpjsd")
 
 [node name="WeaponSlot" parent="SpritePerspective/Sprite" instance=ExtResource("3_8kx2s")]
-transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0.2, 0.24, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0.174641, 0.363923, 0)
+visible = false
 _area_path = NodePath("WeaponArea")
 
 [node name="WeaponArea" type="Area3D" parent="SpritePerspective/Sprite/WeaponSlot"]
@@ -304,13 +79,7 @@ shape = SubResource("SphereShape3D_4msnu")
 
 [node name="LiftSlot" type="Node3D" parent="SpritePerspective/Sprite"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_vnoy8")
-}
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0.04)
 
 [node name="MoveAction" type="Node3D" parent="."]
 unique_name_in_owner = true

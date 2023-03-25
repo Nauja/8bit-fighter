@@ -1,109 +1,105 @@
-[gd_scene load_steps=15 format=3 uid="uid://d1yush5raybm1"]
+[gd_scene load_steps=22 format=3 uid="uid://d1yush5raybm1"]
 
 [ext_resource type="Script" path="res://src/entity/actor/action/move_action.gd" id="1"]
 [ext_resource type="Script" path="res://src/entity/actor/mob/basic_mob.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://dvht4gky8s1ra" path="res://src/entity/actor/mob/slime/slime.png" id="2_bgik5"]
+[ext_resource type="Texture2D" uid="uid://dvuryjsjkusra" path="res://src/entity/actor/hero/template/template.png" id="2_w8wr6"]
 [ext_resource type="Script" path="res://src/utility/super_sprite_3d.gd" id="3_bcghn"]
 [ext_resource type="Script" path="res://src/entity/actor/action/hit_action.gd" id="4"]
-[ext_resource type="Texture2D" uid="uid://d4kqe3k3kbu06" path="res://src/entity/actor/mob/slime/slime_atlas.tres" id="4_hmsmi"]
+[ext_resource type="Texture2D" uid="uid://prhj7fw806vs" path="res://src/entity/actor/hero/template/template_hero_atlas.tres" id="4_cwg0f"]
 [ext_resource type="Script" path="res://src/entity/actor/action/attack_action.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://b7f1r7y1btoat" path="res://src/entity/static/weapon/weapon.png" id="5_a5wnl"]
+[ext_resource type="PackedScene" uid="uid://by0ci7xxcfg75" path="res://src/entity/actor/weapon_slot.tscn" id="5_ugygv"]
+[ext_resource type="Texture2D" uid="uid://cuqe7acygbyio" path="res://src/entity/static/weapon/hammer/hammer_pickup_atlas.tres" id="6_4ttm1"]
+[ext_resource type="Script" path="res://src/entity/actor/action/lift_action.gd" id="7_lpe65"]
+[ext_resource type="Script" path="res://src/entity/actor/mob/basic_mob_controller.gd" id="8_jwirc"]
+[ext_resource type="PackedScene" uid="uid://ydriaa6vpeee" path="res://src/entity/actor/hero/template/animation/template_hero_animation_player.tscn" id="9_1g0mo"]
+[ext_resource type="Script" path="res://src/entity/actor/action/lifted_action.gd" id="10_s14yx"]
+[ext_resource type="Script" path="res://src/entity/actor/action/thrown_action.gd" id="11_ed368"]
+[ext_resource type="Script" path="res://src/entity/actor/action/chase_action.gd" id="15_kl47q"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8oy5"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8iwsl"]
 radius = 0.28
-height = 0.64
+height = 0.758238
 
-[sub_resource type="Animation" id="2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpritePerspective/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0]
-}
+[sub_resource type="SphereShape3D" id="SphereShape3D_fipvn"]
 
-[sub_resource type="Animation" id="4"]
-resource_name = "attack"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpritePerspective/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [16]
-}
+[sub_resource type="SphereShape3D" id="SphereShape3D_fklwy"]
 
-[sub_resource type="Animation" id="3"]
-resource_name = "idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpritePerspective/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
+[sub_resource type="SphereShape3D" id="SphereShape3D_wc352"]
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vnoy8"]
-_data = {
-"RESET": SubResource("2"),
-"attack": SubResource("4"),
-"idle": SubResource("3")
-}
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_3vk11"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_ujk86"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_myrws"]
 
 [node name="BasicMob" type="CharacterBody3D"]
 collision_mask = 8
 script = ExtResource("2")
 
 [node name="CollisionShape2D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0)
-shape = SubResource("CapsuleShape3D_u8oy5")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0)
+shape = SubResource("CapsuleShape3D_8iwsl")
 
 [node name="SpritePerspective" type="Node3D" parent="."]
 unique_name_in_owner = true
 
+[node name="Shadow" type="Sprite3D" parent="SpritePerspective"]
+unique_name_in_owner = true
+pixel_size = 0.04
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("2_w8wr6")
+hframes = 8
+vframes = 8
+frame = 16
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 256)
+script = ExtResource("3_bcghn")
+atlas = ExtResource("4_cwg0f")
+
 [node name="Sprite" type="Sprite3D" parent="SpritePerspective"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-offset = Vector2(0, 6)
+offset = Vector2(0, 16)
 pixel_size = 0.04
+alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("2_bgik5")
-hframes = 2
-vframes = 2
+texture = ExtResource("5_a5wnl")
+hframes = 8
+vframes = 8
 region_enabled = true
-region_rect = Rect2(0, 0, 32, 32)
+region_rect = Rect2(0, 16, 16, 16)
 script = ExtResource("3_bcghn")
-atlas = ExtResource("4_hmsmi")
+atlas = ExtResource("6_4ttm1")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="WeaponSlot" parent="SpritePerspective/Sprite" instance=ExtResource("5_ugygv")]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0.174641, 0.363923, 0)
+_area_path = NodePath("WeaponArea")
+
+[node name="WeaponArea" type="Area3D" parent="SpritePerspective/Sprite/WeaponSlot"]
+collision_layer = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape3D" parent="SpritePerspective/Sprite/WeaponSlot/WeaponArea"]
+shape = SubResource("SphereShape3D_fipvn")
+
+[node name="LiftSlot" type="Node3D" parent="SpritePerspective/Sprite"]
 unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_vnoy8")
-}
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0.04)
+
+[node name="Controller" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("8_jwirc")
+_actor_path = NodePath("..")
+
+[node name="AnimationPlayer" parent="." instance=ExtResource("9_1g0mo")]
+unique_name_in_owner = true
 
 [node name="MoveAction" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1")
+_entity_path = NodePath("..")
+
+[node name="LiftAction" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_lpe65")
+_lift_slot_path = NodePath("../SpritePerspective/Sprite/LiftSlot")
 _entity_path = NodePath("..")
 
 [node name="HitAction" type="Node3D" parent="."]
@@ -116,17 +112,39 @@ unique_name_in_owner = true
 script = ExtResource("5")
 _entity_path = NodePath("..")
 
+[node name="LiftedAction" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("10_s14yx")
+_entity_path = NodePath("..")
+
+[node name="ThrownAction" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("11_ed368")
+_entity_path = NodePath("..")
+
+[node name="ChaseAction" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("15_kl47q")
+_entity_path = NodePath("..")
+
 [node name="InteractionArea" type="Area3D" parent="."]
 unique_name_in_owner = true
 collision_mask = 2
 monitorable = false
 
 [node name="InteractionCollisionShape" type="CollisionShape3D" parent="InteractionArea"]
-shape = SubResource("SphereShape3D_3vk11")
+shape = SubResource("SphereShape3D_fklwy")
+
+[node name="LiftArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+monitorable = false
+
+[node name="LiftCollisionShape" type="CollisionShape3D" parent="LiftArea"]
+shape = SubResource("SphereShape3D_wc352")
 
 [node name="HitBoxArea" type="Area3D" parent="."]
 collision_mask = 4
 monitoring = false
 
 [node name="HitBoxCollisionShape" type="CollisionShape3D" parent="HitBoxArea"]
-shape = SubResource("SphereShape3D_ujk86")
+shape = SubResource("SphereShape3D_myrws")

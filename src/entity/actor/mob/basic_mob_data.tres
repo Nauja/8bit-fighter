@@ -1,20 +1,35 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dedwnl1ar70kk"]
+[gd_resource type="Resource" script_class="BasicMobSheet" load_steps=4 format=3 uid="uid://dedwnl1ar70kk"]
 
 [ext_resource type="Script" path="res://src/autoload/basic_mob_sheet.gd" id="1"]
+[ext_resource type="AnimationLibrary" uid="uid://crqeqwr2r3kf7" path="res://src/entity/actor/hero/template/animation/template_hero_animation.res" id="1_y7duf"]
 [ext_resource type="PackedScene" uid="uid://d1yush5raybm1" path="res://src/entity/actor/mob/basic_mob.tscn" id="2"]
 
 [resource]
 script = ExtResource("1")
-hframes = 16
-vframes = 16
+_animation = ExtResource("1_y7duf")
 scene = ExtResource("2")
-display_name = "Unknown"
-speed = 1
-jump_speed = -180
-lifting_speed = 30
-gravity = 400
+display_name = "BasicMob"
+weight = 0.0
+speed = 2.0
+jump_speed = 0.0
+max_fall_speed = -50.0
+lifting_speed = 0.0
+lifting_speed_multiplier = 0.02
+throw_speed = 12.0
+throw_speed_multiplier = 1.0
+gravity = 4.0
 gravity_multiplier_falling = 1.5
-friction = 1.0
-acceleration = 0.25
+friction = 10.0
+air_friction = 4.0
+acceleration = 10.0
 attack_input_delay = 0.1
+jump_input_delay = 0.1
 interact_input_delay = 0.1
+override_can_move = false
+can_move = false
+override_can_chase = true
+can_chase = true
+override_can_lift = true
+can_lift = true
+override_is_liftable = true
+is_liftable = true
