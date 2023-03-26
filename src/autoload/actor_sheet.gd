@@ -15,30 +15,34 @@ extends Resource
 # Physics
 @export var weight: float:
 	get = _get_weight
-@export var speed: float = 120:
+@export var speed: float:
 	get = _get_speed
-@export var jump_speed: float = -180:
+@export var jump_speed: float:
 	get = _get_jump_speed
-@export var max_fall_speed: float = -180:
+@export var max_fall_speed: float:
 	get = _get_max_fall_speed
-@export var lifting_speed: float = 60:
+@export var lifting_speed: float:
 	get = _get_lifting_speed
-@export var lifting_speed_multiplier: float = 1:
+@export var lifting_speed_multiplier: float:
 	get = _get_lifting_speed_multiplier
-@export var throw_speed: float = 60:
+@export var throw_speed: float:
 	get = _get_throw_speed
-@export var throw_speed_multiplier: float = 1:
+@export var throw_speed_multiplier: float:
 	get = _get_throw_speed_multiplier
-@export var gravity: float = 400:
-	get = _get_gravity
-@export var gravity_multiplier_falling: float = 1.5:
+@export var gravity_multiplier_falling: float:
 	get = _get_gravity_multiplier_falling
-@export var friction: float = 0.1:
+@export var friction: float:
 	get = _get_friction
-@export var air_friction: float = 0.1:
+@export var air_friction: float:
 	get = _get_air_friction
-@export var acceleration: float = 0.25:
+@export var acceleration: float:
 	get = _get_acceleration
+# Minimum range to attack other actors
+@export var attack_min_range: float:
+	get = _get_attack_min_range
+# Maximum range to attack other actors
+@export var attack_max_range: float:
+	get = _get_attack_max_range
 
 # Input
 @export var attack_input_delay: float = 0.1
@@ -61,6 +65,10 @@ extends Resource
 @export var override_is_liftable: bool = false
 @export var is_liftable: bool = false:
 	get = _get_is_liftable
+# If the actor can be interacted with by another actor
+@export var override_is_interactable: bool = false
+@export var is_interactable: bool = false:
+	get = _get_is_interactable
 
 
 func _get_template():
@@ -137,13 +145,6 @@ func _get_throw_speed_multiplier():
 	return template.throw_speed_multiplier
 
 
-func _get_gravity():
-	if gravity != 0 or template == null:
-		return gravity
-
-	return template.gravity
-
-
 func _get_gravity_multiplier_falling():
 	if gravity_multiplier_falling != 0 or template == null:
 		return gravity_multiplier_falling
@@ -172,6 +173,20 @@ func _get_acceleration():
 	return template.acceleration
 
 
+func _get_attack_min_range():
+	if attack_min_range != 0 or template == null:
+		return attack_min_range
+
+	return template.attack_min_range
+
+
+func _get_attack_max_range():
+	if attack_max_range != 0 or template == null:
+		return attack_max_range
+
+	return template.attack_max_range
+
+
 func _get_can_move():
 	if override_can_move or template == null:
 		return can_move
@@ -198,6 +213,13 @@ func _get_is_liftable():
 		return is_liftable
 
 	return template.is_liftable
+
+
+func _get_is_interactable():
+	if override_is_interactable or template == null:
+		return is_interactable
+
+	return template.is_interactable
 
 
 func spawn_at(pos: Vector3) -> Actor:

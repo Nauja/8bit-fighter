@@ -8,6 +8,10 @@ var actor_sheet: ActorSheet:
 		return _actor_sheet
 	set(val):
 		_actor_sheet = val
+		if is_interactable():
+			collision_layer |= 2
+		else:
+			collision_layer &= ~2
 
 var weight: float:
 	get:
@@ -41,17 +45,13 @@ var throw_speed_multiplier: float:
 	get:
 		return actor_sheet.throw_speed_multiplier
 
-var gravity: float:
-	get:
-		return actor_sheet.gravity
-
 var gravity_multiplier_falling: float:
 	get:
 		return actor_sheet.gravity_multiplier_falling
 
 var friction: float:
 	get:
-		return weight * gravity
+		return actor_sheet.friction
 
 var air_friction: float:
 	get:
@@ -60,6 +60,14 @@ var air_friction: float:
 var acceleration: float:
 	get:
 		return actor_sheet.acceleration
+
+var attack_min_range: float:
+	get:
+		return actor_sheet.attack_min_range
+
+var attack_max_range: float:
+	get:
+		return actor_sheet.attack_max_range
 
 var attack_input_delay: float:
 	get:
@@ -88,6 +96,10 @@ func can_lift() -> bool:
 
 func is_liftable() -> bool:
 	return actor_sheet.is_liftable
+
+
+func is_interactable() -> bool:
+	return actor_sheet.is_interactable
 
 
 # Nodes
@@ -299,11 +311,16 @@ func interact() -> bool:
 		return false
 
 	var interactable = interactables[0]
-	if not interactable.has_method("interact"):
+	if not interactable.has_method("on_interacted"):
 		return false
 
 	want_interact = false
-	return interactable.interact(self)
+	return interactable.on_interacted(self)
+
+
+# Another actor interacted with this actor
+func on_interacted(interactor: Actor) -> bool:
+	return false
 
 
 # Try to perform an attack

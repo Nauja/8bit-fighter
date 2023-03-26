@@ -1,35 +1,29 @@
-[gd_scene load_steps=13 format=3 uid="uid://bcrn78a3m38if"]
+[gd_scene load_steps=14 format=3 uid="uid://bcrn78a3m38if"]
 
 [ext_resource type="PackedScene" uid="uid://d1yush5raybm1" path="res://src/entity/actor/mob/basic_mob.tscn" id="1_73pwd"]
 [ext_resource type="Script" path="res://src/level/adventure/adventure_level.gd" id="1_84fma"]
 [ext_resource type="Resource" uid="uid://b1ikk0xur1gfr" path="res://src/entity/actor/mob/slime/slime_data.tres" id="2_ci760"]
-[ext_resource type="Resource" uid="uid://bj3ccyna18uwm" path="res://src/entity/static/weapon/sword/sword_pickup_data.tres" id="6_0bc61"]
-[ext_resource type="Resource" uid="uid://d3d6ewvf4k3kc" path="res://src/entity/static/weapon/hammer/hammer_pickup_data.tres" id="7_liu2e"]
+[ext_resource type="Resource" path="res://src/entity/static/weapon/sword/sword_pickup_data.tres" id="6_0bc61"]
+[ext_resource type="Resource" path="res://src/entity/static/weapon/hammer/hammer_pickup_data.tres" id="7_liu2e"]
 [ext_resource type="Resource" uid="uid://di7f76cdghwcm" path="res://src/entity/actor/hero/template/template_hero_data.tres" id="9_uuaxj"]
-[ext_resource type="Resource" uid="uid://dev1otetj2ow1" path="res://src/entity/actor/chest/potion_chest_data.tres" id="11_svwro"]
-[ext_resource type="Resource" uid="uid://cqfks20hyjnuw" path="res://src/entity/actor/rock/rock_data.tres" id="12_6jvqt"]
+[ext_resource type="Resource" path="res://src/entity/actor/chest/potion_chest_data.tres" id="11_svwro"]
+[ext_resource type="Resource" path="res://src/entity/actor/rock/rock_data.tres" id="12_6jvqt"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_2nxmm"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_sbys2"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_uc0ws"]
+vertices = PackedVector3Array(-1.4455, 1.4765, 2, -1.4455, 1.4765, 1.25, -2.6955, 1.4765, 1, -4.9455, 1.4765, 2, -2.6955, 1.4765, -0.75, -1.4455, 1.4765, -1, -1.4455, 1.4765, -2, -4.9455, 1.4765, -2, -2.6955, 1.4765, -0.75, -4.9455, 1.4765, -2, -4.9455, 1.4765, 2, -2.6955, 1.4765, 1, -0.4455, 1.4765, 1, -1.4455, 1.4765, 1.25, -1.4455, 1.4765, 2, 5.0545, 1.4765, 2, -1.4455, 1.4765, -2, -1.4455, 1.4765, -1, -0.4455, 1.4765, -0.75, 5.0545, 1.4765, -2, -0.4455, 1.4765, -0.75, -0.4455, 1.4765, 1, 5.0545, 1.4765, 2, 5.0545, 1.4765, -2)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 23)]
 
 [sub_resource type="BoxMesh" id="BoxMesh_aulry"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_voqvy"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_2nxmm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sbys2"]
+
 [node name="AdventureLevel" type="Node3D"]
 script = ExtResource("1_84fma")
 _hero_sheet = ExtResource("9_uuaxj")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(10.891, 0, 0, 0, 2.047, 0, 0, 0, 5, 0, 0, 0)
-mesh = SubResource("BoxMesh_2nxmm")
-
-[node name="Area3D" type="StaticBody3D" parent="MeshInstance3D"]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
-shape = SubResource("BoxShape3D_sbys2")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 9.81484, 8.27857)
@@ -62,12 +56,27 @@ _actor_sheet = ExtResource("11_svwro")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56, 1.6, -0.16)
 _actor_sheet = ExtResource("12_6jvqt")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_uc0ws")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56563, 1.10671, 0)
 mesh = SubResource("BoxMesh_aulry")
+skeleton = NodePath("../..")
 
-[node name="Area3D" type="CharacterBody3D" parent="MeshInstance3D2"]
+[node name="Area3D" type="CharacterBody3D" parent="NavigationRegion3D/MeshInstance3D2"]
 collision_layer = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D2/Area3D"]
 shape = SubResource("BoxShape3D_voqvy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(10.891, 0, 0, 0, 2.047, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("BoxMesh_2nxmm")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/Area3D"]
+shape = SubResource("BoxShape3D_sbys2")

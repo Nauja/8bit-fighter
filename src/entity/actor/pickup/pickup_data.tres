@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="BasicMobSheet" load_steps=4 format=3 uid="uid://dqxd6xknkurd3"]
 
-[ext_resource type="AnimationLibrary" uid="uid://clk8cvpc8qhhs" path="res://src/entity/actor/pickup/animation/pickup_animation.res" id="1_l5jwj"]
-[ext_resource type="Script" path="res://src/autoload/basic_mob_sheet.gd" id="2_ru1wx"]
-[ext_resource type="Resource" uid="uid://dedwnl1ar70kk" path="res://src/entity/actor/mob/basic_mob_data.tres" id="3_tt6qu"]
+[ext_resource type="AnimationLibrary" uid="uid://clk8cvpc8qhhs" path="res://src/entity/actor/pickup/animation/pickup_animation.res" id="1_ayqgb"]
+[ext_resource type="Script" path="res://src/autoload/basic_mob_sheet.gd" id="2_o7g0e"]
+[ext_resource type="Resource" uid="uid://dedwnl1ar70kk" path="res://src/entity/actor/mob/basic_mob_data.tres" id="3_7g0st"]
 
 [resource]
-script = ExtResource("2_ru1wx")
-_animation = ExtResource("1_l5jwj")
-template = ExtResource("3_tt6qu")
+script = ExtResource("2_o7g0e")
+_animation = ExtResource("1_ayqgb")
+template = ExtResource("3_7g0st")
 display_name = ""
 weight = 1.0
 speed = 0.0
@@ -17,11 +17,12 @@ lifting_speed = 0.0
 lifting_speed_multiplier = 1.0
 throw_speed = 0.0
 throw_speed_multiplier = 1.0
-gravity = 0.0
 gravity_multiplier_falling = 0.0
 friction = 18.0
 air_friction = 4.0
 acceleration = 10.0
+attack_min_range = 0.0
+attack_max_range = 0.0
 attack_input_delay = 0.1
 jump_input_delay = 0.1
 interact_input_delay = 0.1
@@ -33,3 +34,5 @@ override_can_lift = true
 can_lift = false
 override_is_liftable = true
 is_liftable = true
+override_is_interactable = true
+is_interactable = true

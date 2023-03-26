@@ -13,6 +13,10 @@ var mob_sheet: BasicMobSheet:
 @onready var _lift_area: Area3D = %LiftArea
 # Slot for lifted object
 @onready var _lift_slot: Node3D = %LiftSlot
+# Agent for the navigation
+@onready var navigation_agent: NavigationAgent3D = %NavigationAgent:
+	get:
+		return navigation_agent
 
 
 func _get_mob_sheet() -> BasicMobSheet:
@@ -100,15 +104,29 @@ func throw() -> bool:
 
 func _on_area_entered(area: Area3D) -> void:
 	print(name, " entered ", area)
-	if area.is_in_group("interactable"):
-		add_interactable(area)
+	_check_interactable_entered(area)
 
 
 func _on_area_exited(area: Area3D) -> void:
 	print(name, " exited ", area)
-	if area.is_in_group("interactable"):
-		remove_interactable(area)
+	_check_interactable_exited(area)
 
 
 func _on_body_entered(body: Node3D) -> void:
 	print(name, " entered ", body)
+	_check_interactable_entered(body)
+
+
+func _on_body_exited(body: Node3D) -> void:
+	print(name, " exited ", body)
+	_check_interactable_exited(body)
+
+
+func _check_interactable_entered(other: Node3D) -> void:
+	if other is Actor and other.is_interactable():
+		add_interactable(other)
+
+
+func _check_interactable_exited(other: Node3D) -> void:
+	if other is Actor and other.is_interactable():
+		remove_interactable(other)

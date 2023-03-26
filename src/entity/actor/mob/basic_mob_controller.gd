@@ -21,9 +21,7 @@ func _process(delta):
 			Enums.EActorState.Chase:
 				if not player:
 					actor.push_state(Enums.EActorState.Move)
-				else:
-					actor.current_action.target = player.global_position
 			Enums.EActorState.Move:
 				if player:
 					actor.push_state(Enums.EActorState.Chase)
-					actor.current_action.target = player.global_position
+					actor.current_action.target = player

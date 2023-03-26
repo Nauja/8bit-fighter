@@ -7,9 +7,9 @@
 [ext_resource type="Resource" uid="uid://di7f76cdghwcm" path="res://src/entity/actor/hero/template/template_hero_data.tres" id="4_l1vgm"]
 [ext_resource type="Script" path="res://src/input/local_input_device.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://tbjq8mt1hpqs" path="res://src/entity/actor/pickup/pickup.tscn" id="8_0hejs"]
-[ext_resource type="Resource" uid="uid://dev1otetj2ow1" path="res://src/entity/actor/chest/potion_chest_data.tres" id="8_y8x87"]
-[ext_resource type="Resource" uid="uid://bj3ccyna18uwm" path="res://src/entity/static/weapon/sword/sword_pickup_data.tres" id="9_lbf70"]
-[ext_resource type="Resource" uid="uid://d3d6ewvf4k3kc" path="res://src/entity/static/weapon/hammer/hammer_pickup_data.tres" id="10_2wr62"]
+[ext_resource type="Resource" path="res://src/entity/actor/chest/potion_chest_data.tres" id="8_y8x87"]
+[ext_resource type="Resource" path="res://src/entity/static/weapon/sword/sword_pickup_data.tres" id="9_lbf70"]
+[ext_resource type="Resource" path="res://src/entity/static/weapon/hammer/hammer_pickup_data.tres" id="10_2wr62"]
 [ext_resource type="PackedScene" uid="uid://c20sfpiq4it8" path="res://src/entity/actor/chest/chest.tscn" id="10_nom8r"]
 
 [node name="AdventureLevel" type="Node2D"]

@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="BasicMobSheet" load_steps=4 format=3 uid="uid://cqfks20hyjnuw"]
+[gd_resource type="Resource" script_class="BasicMobSheet" load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://src/autoload/basic_mob_sheet.gd" id="1_bbhug"]
 [ext_resource type="Texture2D" uid="uid://c1b7qjq8p5mvb" path="res://src/entity/actor/rock/rock_atlas.tres" id="2_l2jfl"]
-[ext_resource type="Resource" uid="uid://dqxd6xknkurd3" path="res://src/entity/static/weapon/template_pickup_data.tres" id="3_vkb3y"]
+[ext_resource type="Resource" uid="uid://dqxd6xknkurd3" path="res://src/entity/actor/pickup/pickup_data.tres" id="3_vkb3y"]
 
 [resource]
 script = ExtResource("1_bbhug")

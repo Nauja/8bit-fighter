@@ -9,11 +9,11 @@ var equipment: EquipmentSheet:
 		return _equipment
 
 
-func interact(pickup: Pickup, actor: Actor) -> bool:
+func on_interacted(interactor: Actor, pickup: Pickup) -> bool:
 	if not _equipment:
 		return false
 
-	var slot = actor.get_equipment_slot(equipment.slot)
+	var slot = interactor.get_equipment_slot(equipment.slot)
 	if not slot:
 		return false
 

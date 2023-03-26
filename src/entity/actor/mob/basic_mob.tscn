@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://src/entity/actor/action/chase_action.gd" id="15_kl47q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8iwsl"]
-radius = 0.28
+radius = 0.25
 height = 0.758238
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fipvn"]
@@ -148,3 +148,6 @@ monitoring = false
 
 [node name="HitBoxCollisionShape" type="CollisionShape3D" parent="HitBoxArea"]
 shape = SubResource("SphereShape3D_myrws")
+
+[node name="NavigationAgent" type="NavigationAgent3D" parent="."]
+unique_name_in_owner = true

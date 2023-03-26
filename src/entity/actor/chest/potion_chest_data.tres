@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="ChestSheet" load_steps=7 format=3 uid="uid://dev1otetj2ow1"]
+[gd_resource type="Resource" script_class="ChestSheet" load_steps=7 format=3]
 
-[ext_resource type="Resource" uid="uid://bj3ccyna18uwm" path="res://src/entity/static/weapon/sword/sword_pickup_data.tres" id="1_1vvjb"]
+[ext_resource type="Resource" path="res://src/entity/static/weapon/sword/sword_pickup_data.tres" id="1_1vvjb"]
 [ext_resource type="AnimationLibrary" uid="uid://clk8cvpc8qhhs" path="res://src/entity/actor/pickup/animation/pickup_animation.res" id="1_cmmr4"]
 [ext_resource type="Texture2D" uid="uid://bo6xah1cuu2sl" path="res://src/entity/actor/chest/closed_chest_atlas.tres" id="1_h0u63"]
 [ext_resource type="Texture2D" uid="uid://xbp8fnm5e82v" path="res://src/entity/actor/chest/opened_chest_atlas.tres" id="2_j6fix"]
 [ext_resource type="Script" path="res://src/autoload/chest_sheet.gd" id="3_8du43"]
-[ext_resource type="Resource" uid="uid://dqxd6xknkurd3" path="res://src/entity/static/weapon/template_pickup_data.tres" id="5_5r5tf"]
+[ext_resource type="Resource" uid="uid://dqxd6xknkurd3" path="res://src/entity/actor/pickup/pickup_data.tres" id="5_5r5tf"]
 
 [resource]
 script = ExtResource("3_8du43")

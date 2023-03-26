@@ -95,7 +95,7 @@ func _physics_process(delta):
 		return
 
 	get_input(delta)
-	actor.velocity.y -= actor.gravity * actor.gravity_multiplier * delta
+	actor.velocity.y -= Constants.GRAVITY * actor.gravity_multiplier * delta
 	actor.velocity.y = max(actor.velocity.y, actor.max_fall_speed)
 	actor.set_up_direction(Vector3.UP)
 	actor.move_and_slide()

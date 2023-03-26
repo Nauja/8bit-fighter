@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="EquipmentPickupSheet" load_steps=5 format=3 uid="uid://bj3ccyna18uwm"]
+[gd_resource type="Resource" script_class="EquipmentPickupSheet" load_steps=5 format=3]
 
 [ext_resource type="Resource" uid="uid://baij4q8kd7t3m" path="res://src/entity/static/weapon/sword/sword_weapon_data.tres" id="1_pii60"]
 [ext_resource type="Script" path="res://src/autoload/equipment_pickup_sheet.gd" id="2_vfpbk"]
-[ext_resource type="Resource" uid="uid://dqxd6xknkurd3" path="res://src/entity/static/weapon/template_pickup_data.tres" id="3_4y336"]
+[ext_resource type="Resource" uid="uid://dqxd6xknkurd3" path="res://src/entity/actor/pickup/pickup_data.tres" id="3_4y336"]
 [ext_resource type="Texture2D" uid="uid://da7lga07vg522" path="res://src/entity/static/weapon/sword/sword_pickup_atlas.tres" id="4_y12ro"]
 
 [resource]
