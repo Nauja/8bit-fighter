@@ -12,7 +12,8 @@ config_version=5
 
 config/name="8bit-fighter"
 run/main_scene="res://src/root.tscn"
-config/features=PackedStringArray("4.0")
+config/use_custom_user_dir=true
+config/features=PackedStringArray("4.1")
 config/icon="res://icon.png"
 
 [autoload]
@@ -22,6 +23,9 @@ Constants="*res://src/autoload/constants.gd"
 PlayerControllerSignals="*res://src/autoload/player_controller_signals.gd"
 Enums="*res://src/autoload/enums.gd"
 Utils="*res://src/autoload/utils.gd"
+NetworkInterface="*res://src/autoload/network_interface.gd"
+SaveGame="*res://src/autoload/save_game.gd"
+PlayerManager="*res://src/autoload/player_manager.gd"
 
 [display]
 

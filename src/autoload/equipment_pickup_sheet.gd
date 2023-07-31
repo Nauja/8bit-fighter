@@ -9,7 +9,7 @@ var equipment: EquipmentSheet:
 		return _equipment
 
 
-func on_interacted(interactor: Actor, pickup: Pickup) -> bool:
+func on_interacted(interactor: Actor, pickup: Actor) -> bool:
 	if not _equipment:
 		return false
 

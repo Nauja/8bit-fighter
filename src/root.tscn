@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbxcd5ublb58e"]
+[gd_scene load_steps=10 format=3 uid="uid://d0c3wipcwc7mp"]
 
 [ext_resource type="Script" path="res://src/root.gd" id="1"]
-[ext_resource type="PackedScene" path="res://src/menu/home/home.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://bcrn78a3m38if" path="res://src/level/adventure/adventure_level_3d.tscn" id="3_wpufv"]
+[ext_resource type="PackedScene" uid="uid://b5yb1p2sljoca" path="res://src/menu/home/home.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bcrn78a3m38if" path="res://src/level/adventure/adventure_level.tscn" id="3_rs1l8"]
 [ext_resource type="Script" path="res://src/game_instance.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://b2tg6mys22i2e" path="res://src/entity/actor/player_controller.tscn" id="5_6nb8g"]
 [ext_resource type="Script" path="res://src/input/input_device_mapper.gd" id="6_vx0w5"]
+[ext_resource type="Script" path="res://src/player_manager_impl.gd" id="7_fhodk"]
+[ext_resource type="PackedScene" uid="uid://bo781pf38610e" path="res://src/player.tscn" id="8_iilry"]
+
+[sub_resource type="GDScript" id="GDScript_bq1kh"]
 
 [node name="SubViewport" type="SubViewportContainer"]
 anchors_preset = 15
@@ -13,7 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1")
 home_scene = ExtResource("2")
-level_scene = ExtResource("3_wpufv")
+level_scene = ExtResource("3_rs1l8")
 root_node = NodePath("Control")
 
 [node name="Control" type="Control" parent="."]
@@ -31,3 +35,24 @@ script = ExtResource("4")
 [node name="InputDeviceMapper" type="Node" parent="GameInstance"]
 script = ExtResource("6_vx0w5")
 _controller_scene = ExtResource("5_6nb8g")
+
+[node name="NetworkInterface" type="Node" parent="GameInstance"]
+script = SubResource("GDScript_bq1kh")
+
+[node name="LevelRoot" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://src/level/adventure/adventure_level.tscn")
+spawn_path = NodePath("../LevelRoot")
+spawn_limit = 1
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://src/player.tscn")
+spawn_path = NodePath("../PlayerManagerImpl")
+
+[node name="PlayerManagerImpl" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_fhodk")
+_player_scene = ExtResource("8_iilry")
+_player_root_path = NodePath(".")

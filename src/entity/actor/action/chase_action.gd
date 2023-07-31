@@ -13,10 +13,7 @@ func _do_start():
 	super()
 
 
-func _physics_process(delta):
-	if not is_playing():
-		return
-
+func _do_physics_process(delta):
 	actor.navigation_agent.set_target_position(target.global_position)
 	var target_pos = actor.navigation_agent.get_next_path_position()
 	#var direction = actor.global_position - target.global_position

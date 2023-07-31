@@ -9,7 +9,7 @@ extends CharacterBody3D
 var _action_queue: Array[EntityAction] = []
 
 # Action currently playing
-var current_action: EntityAction:
+@export var current_action: EntityAction:
 	get:
 		return current_action
 

@@ -3,6 +3,6 @@ extends BasicMobSheet
 
 
 # An actor interacted with
-func on_interacted(interactor: Actor, pickup: Pickup) -> bool:
+func on_interacted(interactor: Actor, pickup: Actor) -> bool:
 	assert(false)
 	return false

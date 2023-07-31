@@ -3,8 +3,10 @@ extends BasicMob
 
 # Chest sheet accessors
 var chest_sheet: ChestSheet:
-	get = _get_chest_sheet,
-	set = _set_chest_sheet
+	get:
+		return actor_sheet
+	set(val):
+		actor_sheet = val
 
 var closed_texture: Texture2D:
 	get:
@@ -20,12 +22,8 @@ var is_open: bool:
 	set = _set_is_open
 
 
-func _get_chest_sheet() -> ChestSheet:
-	return actor_sheet
-
-
-func _set_chest_sheet(val: ChestSheet) -> void:
-	actor_sheet = val
+func _on_actor_sheet_changed() -> void:
+	super()
 	is_open = is_open
 
 

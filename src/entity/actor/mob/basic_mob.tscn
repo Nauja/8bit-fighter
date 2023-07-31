@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d1yush5raybm1"]
+[gd_scene load_steps=24 format=3 uid="uid://d1yush5raybm1"]
 
 [ext_resource type="Script" path="res://src/entity/actor/action/move_action.gd" id="1"]
 [ext_resource type="Script" path="res://src/entity/actor/mob/basic_mob.gd" id="2"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://src/entity/actor/action/lifted_action.gd" id="10_s14yx"]
 [ext_resource type="Script" path="res://src/entity/actor/action/thrown_action.gd" id="11_ed368"]
 [ext_resource type="Script" path="res://src/entity/actor/action/chase_action.gd" id="15_kl47q"]
+[ext_resource type="Script" path="res://src/entity/actor/mob/basic_mob_network_state.gd" id="17_6awb8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8iwsl"]
 radius = 0.25
@@ -28,6 +29,28 @@ height = 0.758238
 [sub_resource type="SphereShape3D" id="SphereShape3D_wc352"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_myrws"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_y1x8b"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("NetworkState:_actor_sheet_path")
+properties/2/spawn = true
+properties/2/sync = false
+properties/2/watch = false
+properties/3/path = NodePath("SpritePerspective/Shadow:position")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+properties/4/path = NodePath("NetworkState:_state")
+properties/4/spawn = true
+properties/4/sync = false
+properties/4/watch = false
 
 [node name="BasicMob" type="CharacterBody3D"]
 collision_mask = 8
@@ -151,3 +174,10 @@ shape = SubResource("SphereShape3D_myrws")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_y1x8b")
+
+[node name="NetworkState" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("17_6awb8")

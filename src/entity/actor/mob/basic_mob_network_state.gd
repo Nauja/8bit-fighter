@@ -1,0 +1,2 @@
+class_name BasicMobNetworkState
+extends ActorNetworkState

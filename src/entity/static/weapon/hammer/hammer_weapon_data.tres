@@ -1,6 +1,5 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://b7tbh5t7s0p7t"]
 
-[ext_resource type="PackedScene" uid="uid://bwmnp4478ldr1" path="res://src/entity/actor/pickup/pickup.tscn" id="1_26jbr"]
 [ext_resource type="Script" path="res://src/autoload/weapon_sheet.gd" id="1_bgnp1"]
 [ext_resource type="Texture2D" uid="uid://dpiio7jpcone1" path="res://src/entity/static/weapon/hammer/hammer_weapon_atlas.tres" id="2_3qceg"]
 
@@ -8,7 +7,6 @@
 script = ExtResource("1_bgnp1")
 texture = ExtResource("2_3qceg")
 slot = 1
-scene = ExtResource("1_26jbr")
 display_name = ""
 speed = 120
 jump_speed = -180

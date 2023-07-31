@@ -1,28 +1,153 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://b5yb1p2sljoca"]
 
-[ext_resource path="res://src/menu/home/home.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://src/menu/home/home.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://b5fbqbfd46cv8" path="res://src/menu/home/player_slot.tscn" id="2_yt5xd"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 root_node = NodePath("Control")
-play_button = NodePath("Control/Button")
 
 [node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.172549, 0.164706, 0.211765, 1 )
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.172549, 0.164706, 0.211765, 1)
 
-[node name="Button" type="Button" parent="Control"]
+[node name="PlayButton" type="Button" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -104.0
+offset_right = 76.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="JoinText" type="TextEdit" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 76.0
+offset_top = 616.0
+offset_right = 427.0
+offset_bottom = 684.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "127.0.0.1:6900"
+
+[node name="JoinButton" type="Button" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 443.0
+offset_top = 616.0
+offset_right = 595.0
+offset_bottom = 684.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Join"
+
+[node name="LeaveButton" type="Button" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 443.0
+offset_top = 616.0
+offset_right = 595.0
+offset_bottom = 684.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Leave"
+
+[node name="HostButton" type="Button" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -595.0
+offset_top = 616.0
+offset_right = -443.0
+offset_bottom = 684.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Host"
+
+[node name="PlayerSlots" type="HBoxContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.5
-offset_top = -12.0
-offset_right = 32.5
-offset_bottom = 12.0
-text = "Play"
+offset_left = -524.0
+offset_top = -198.0
+offset_right = 524.0
+offset_bottom = 198.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="PlayerSlot1" parent="Control/PlayerSlots" instance=ExtResource("2_yt5xd")]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="PlayerSlot2" parent="Control/PlayerSlots" instance=ExtResource("2_yt5xd")]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="PlayerSlot3" parent="Control/PlayerSlots" instance=ExtResource("2_yt5xd")]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="PlayerSlot4" parent="Control/PlayerSlots" instance=ExtResource("2_yt5xd")]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 43.0
+offset_top = 31.0
+offset_right = -57.0
+offset_bottom = 99.0
+theme_override_constants/separation = 16
+
+[node name="ShowProfileButton" type="Button" parent="Control/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Show Profile"
+
+[node name="ResetProfileButton" type="Button" parent="Control/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Reset Profile"

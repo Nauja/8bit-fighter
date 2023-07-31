@@ -228,5 +228,5 @@ func spawn_at(pos: Vector3) -> Actor:
 
 	var o = scene.instantiate()
 	o.position = pos
-	o.actor_sheet = self
+	o._actor_sheet = self
 	return o

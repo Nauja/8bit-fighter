@@ -90,10 +90,7 @@ func get_input(delta: float):
 	_is_idle = dirx == 0 and diry == 0
 
 
-func _physics_process(delta):
-	if not is_playing():
-		return
-
+func _do_physics_process(delta):
 	get_input(delta)
 	actor.velocity.y -= Constants.GRAVITY * actor.gravity_multiplier * delta
 	actor.velocity.y = max(actor.velocity.y, actor.max_fall_speed)

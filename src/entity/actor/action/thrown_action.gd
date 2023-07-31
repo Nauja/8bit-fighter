@@ -6,7 +6,7 @@ func _do_start():
 	super()
 
 
-func _physics_process(delta):
+func _do_physics_process(delta):
 	super(delta)
 
 	if not is_playing():

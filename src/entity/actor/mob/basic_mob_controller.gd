@@ -12,7 +12,7 @@ func _find_player() -> Actor:
 
 
 func _process(delta):
-	if not is_attached():
+	if not is_attached() or not actor.actor_sheet:
 		return
 
 	if actor.can_chase():

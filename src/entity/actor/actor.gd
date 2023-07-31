@@ -5,13 +5,9 @@ extends Entity
 @export var _actor_sheet: Resource
 var actor_sheet: ActorSheet:
 	get:
-		return _actor_sheet
+		return _network_state.actor_sheet
 	set(val):
-		_actor_sheet = val
-		if is_interactable():
-			collision_layer |= 2
-		else:
-			collision_layer &= ~2
+		_network_state.set_actor_sheet(val)
 
 var weight: float:
 	get:
@@ -83,23 +79,29 @@ var interact_input_delay: float:
 
 
 func can_move() -> bool:
-	return actor_sheet.can_move and (current_action.can_move() if current_action else true)
+	return (
+		(actor_sheet.can_move if actor_sheet else false)
+		and (current_action.can_move() if current_action else true)
+	)
 
 
 func can_chase() -> bool:
-	return actor_sheet.can_chase
+	return actor_sheet.can_chase if actor_sheet else false
 
 
 func can_lift() -> bool:
-	return actor_sheet.can_lift and (current_action.can_lift() if current_action else true)
+	return (
+		(actor_sheet.can_lift if actor_sheet else false)
+		and (current_action.can_lift() if current_action else true)
+	)
 
 
 func is_liftable() -> bool:
-	return actor_sheet.is_liftable
+	return actor_sheet.is_liftable if actor_sheet else false
 
 
 func is_interactable() -> bool:
-	return actor_sheet.is_interactable
+	return actor_sheet.is_interactable if actor_sheet else false
 
 
 # Nodes
@@ -128,6 +130,10 @@ var equipment_slots = {}
 	Enums.EActorState.Thrown: %ThrownAction,
 	Enums.EActorState.Chase: %ChaseAction
 }
+# Network state
+@onready var _network_state: ActorNetworkState = %NetworkState:
+	get:
+		return _network_state
 
 # Team the actor is in
 @export var team: int
@@ -149,7 +155,9 @@ var is_jumping: bool
 # Current state
 var state: Enums.EActorState:
 	get:
-		return state
+		return _network_state.state
+	set(val):
+		_network_state.set_state(val)
 
 # Does the actor want to do an attack, including a slight delay
 var _want_attack_timer: float
@@ -193,6 +201,13 @@ var perspective_enabled: bool:
 
 # Possible interactions
 var interactables: Array[Node3D] = []
+
+
+func _on_actor_sheet_changed() -> void:
+	if is_interactable():
+		collision_layer |= 2
+	else:
+		collision_layer &= ~2
 
 
 func _get_direction() -> Enums.EDirection:
@@ -243,6 +258,11 @@ func _ready():
 		controller = %Controller
 	if controller:
 		controller.actor = self
+	_network_state.connect("actor_sheet_changed", _on_actor_sheet_changed)
+	_network_state.connect("state_changed", _on_state_changed)
+	if NetworkInterface.is_host:
+		actor_sheet = _actor_sheet
+	_network_state._ready()
 
 
 # Build the list of equipment slots
@@ -330,4 +350,7 @@ func attack() -> bool:
 
 func push_state(new_state: int) -> void:
 	state = new_state
-	push_action(_actions[new_state])
+
+
+func _on_state_changed() -> void:
+	push_action(_actions[state] if _actions else null)

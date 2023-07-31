@@ -41,4 +41,4 @@ func equip(other: EquipmentSheet) -> bool:
 
 
 func _on_area_entered(area: Area3D) -> void:
-	print(name, " entered ", area)
+	pass

@@ -4,8 +4,10 @@ extends Actor
 
 # Mob sheet accessor
 var mob_sheet: BasicMobSheet:
-	get = _get_mob_sheet,
-	set = _set_mob_sheet
+	get:
+		return actor_sheet
+	set(val):
+		actor_sheet = val
 
 # Area to detect interactables
 @onready var _interaction_area: Area3D = %InteractionArea
@@ -19,20 +21,15 @@ var mob_sheet: BasicMobSheet:
 		return navigation_agent
 
 
-func _get_mob_sheet() -> BasicMobSheet:
-	return actor_sheet
-
-
-func _set_mob_sheet(val: BasicMobSheet) -> void:
-	actor_sheet = val
-	if animation_player:
-		var key = animation_player.get_animation_library_list()[0]
-		animation_player.remove_animation_library(key)
-		animation_player.add_animation_library(key, val.animation)
-	if val:
-		name = val.display_name
+func _on_actor_sheet_changed() -> void:
+	super()
+	if mob_sheet:
+		if animation_player:
+			var key = animation_player.get_animation_library_list()[0]
+			animation_player.remove_animation_library(key)
+			animation_player.add_animation_library(key, mob_sheet.animation)
 	if sprite != null:
-		sprite.atlas = val.texture if val else null
+		sprite.atlas = mob_sheet.texture if mob_sheet else null
 	push_state(Enums.EActorState.Move)
 
 
@@ -42,8 +39,6 @@ func _ready():
 		_interaction_area.connect("area_entered", _on_area_entered)
 		_interaction_area.connect("area_exited", _on_area_exited)
 		_interaction_area.connect("body_entered", _on_body_entered)
-	mob_sheet = mob_sheet
-	assert(mob_sheet)
 
 
 func attack() -> bool:
@@ -103,22 +98,18 @@ func throw() -> bool:
 
 
 func _on_area_entered(area: Area3D) -> void:
-	print(name, " entered ", area)
 	_check_interactable_entered(area)
 
 
 func _on_area_exited(area: Area3D) -> void:
-	print(name, " exited ", area)
 	_check_interactable_exited(area)
 
 
 func _on_body_entered(body: Node3D) -> void:
-	print(name, " entered ", body)
 	_check_interactable_entered(body)
 
 
 func _on_body_exited(body: Node3D) -> void:
-	print(name, " exited ", body)
 	_check_interactable_exited(body)
 
 

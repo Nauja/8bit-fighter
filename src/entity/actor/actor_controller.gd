@@ -51,5 +51,5 @@ func release() -> void:
 
 
 func _ready():
-	if not actor:
+	if not actor and not _actor_path.is_empty():
 		actor = get_node(_actor_path)
